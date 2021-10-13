@@ -1,0 +1,290 @@
+.pageWrap {
+  max-width: 700px;
+  min-width: 320px;
+  margin: 60px auto 0;
+  text-align: center;
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
+}
+
+.arrowWrap{
+  margin: 100px auto 0;
+}
+
+.pageWrap img{
+  margin: 0 auto;
+}
+
+.pageWrap button#simple-tab-1, #simple-tab-0{
+position:relative;
+top:16px;
+font-size:16px;
+font-weight:900;
+}
+
+.MuiTabs-indicator{
+  height:4px !important;
+
+}
+
+#simple-tab-1 span{
+margin:0;
+padding:0;
+height:10px;
+}
+
+.MainText{
+  color:#333;
+  font-weight:400;
+  line-height:1;
+  font-size:14px;
+margin:0 auto;
+padding:0;
+}
+
+ul{
+    list-style:none;
+    width:320px;
+    margin: 48px auto 120px;
+    padding:0;
+}
+
+
+.pageWrap h2{
+  width:75%;
+  margin: 24px auto 0;
+  border-bottom: 15px solid #47acff;
+}
+
+
+.pageWrap h3{
+  font-size:24px;
+ margin:16px auto 8px;
+ padding:0;
+}
+
+.pageWrap p{
+  color:#00acff;
+  font-weight:700;
+  font-size:14px;
+  padding:0;
+  margin:0;
+}
+
+.pageWrap .plane{
+  width:200px;
+  margin: 0 auto;
+}
+
+.pageWrap .textImportant{
+  background: #F9FF85;
+}
+
+.pageWrap .arrow{
+  display:flex;
+  flex-direction:column;
+  width:80px;
+  margin: 24px auto 0;
+}
+
+.pageWrap .frontarrow{
+  width:60px;
+}
+
+.pageWrap .car{
+  width:100px;
+  margin: 0 auto;
+}
+
+.pageWrap .BackIcon{
+  position:relative;
+  bottom:60px;
+  width:100px;
+}
+
+
+.pageWrap ul li{
+line-height:2;
+font-size:16px;
+padding:0;
+margin:0 auto;
+}
+
+.selfCheckDelayText{
+font-weight:900;
+}
+
+footer{
+  width:100%;
+  fisplay:flex;
+  flex-direction:row;
+  align-item:center;
+  justify-content:space-around;
+}
+
+footer p{
+  width:100%;
+  fisplay:flex;
+  flex-direction:row;
+  justify-content:space-around;
+}
+
+.red{
+  color:red;
+}
+.green{
+  color:green;
+}
+.yellow{
+  color:#ffb80c;
+}
+
+
+
+.downloadWrap{
+  width:200px;
+  height:200px;
+  border:4px dotted #ccc;
+  margin: 0 auto;
+  margin-bottom: 17px;
+  display:flex;
+  align-item:center;
+  justify-content:center;
+}
+
+.downloadClearWrap{
+  border:8px solid #368BFF;
+  border-radius:20px;
+  flex-direction:column;
+}
+
+.downloadWrap img{
+display:flex;
+align-self:center;
+
+}
+
+.pageWrap button{
+  width:200px;
+  height:50px;
+  color:#fff;
+  font-size:20px;
+  margin: 24px auto 16px;
+
+  border: none;
+  border-radius: 50px;
+}
+
+.photoCheck{
+ position:relative;
+ top:4px;
+}
+
+.beforeBtn{
+  background-color:#368BFF;
+}
+
+.afterBtn{
+  background-color:#ccc;
+}
+
+.checkStartBtn{
+  width:240px !important;
+  height:50px !important;
+  background: #368bff !important;
+  font-weight:900;
+  font-size:24px !important;
+  border-radius:10px !important;
+  margin: 20px auto !important;
+  cursor: pointer;
+  border: 1px solid;
+}
+
+#inputFileLabel {
+  padding: 10px 50px;
+  background-color: #368BFF;
+  border-color: #368BFF;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 300px;
+  font-size: 22px;
+}
+
+
+.selfCheckBtn{
+  width:80% !important;
+min-width:250px !important;
+max-width:400px !important;
+  height:80px !important;
+  background: #052170 !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  border-radius: 10px !important;
+  cursor: pointer;
+}
+
+.selfCheckBtn:disabled{
+  width:80% !important;
+min-width:250px !important;
+max-width:400px !important;
+  height:80px !important;
+  background: #b4b4b4 !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  border-radius: 10px !important;
+  cursor: default;
+}
+
+.caution_ul {
+  margin: 30px auto;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7)
+}
+
+.spinnerModal {
+  position: relative;
+  margin: 300px auto;
+}
+
+.spinnerModal span {
+  font-size: 28px;
+  color: #28E7FF;
+}
+
+.resultBtn {
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  border: 4px solid #368BFF;
+  border-radius: 50px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.resultBtn:hover {
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #C8FFFF;
+  border: 4px solid #368BFF;
+  border-radius: 50px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media all and (min-width: 320px) and (max-width: 699px) {
+ 
+}
