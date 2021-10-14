@@ -43,7 +43,7 @@ const Page4 = () => {
   // 사용자가 업로드한 이미지를 축소하는 함수
   const resizeImage = async (targetImage) => {
     const options = {
-      maxWidthOrHeight: 640
+      maxWidthOrHeight: 1280
     }
 
     try {
