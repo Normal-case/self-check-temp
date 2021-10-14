@@ -39,6 +39,14 @@ const Page5 = () => {
         }
     }
 
+    const submitSizeAssume = () => {
+        const formData = new FormData()
+        formData.append("base64_img", resultImg)
+        API.sizeSend(formData)
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error))
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -93,6 +101,7 @@ const Page5 = () => {
             <video ref={videoRef} autoPlay style={Styles.None} />
             <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
             <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
+            <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
         </>
     )
 }
