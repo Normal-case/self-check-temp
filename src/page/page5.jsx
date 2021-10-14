@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef} from "react"
+import API from '../api-server'
 
 const Page5 = () => {
 
@@ -44,7 +45,7 @@ const Page5 = () => {
         formData.append("base64_img", resultImg)
         API.sizeSend(formData)
             .then(resp => console.log(resp))
-            .catch(error => console.log(error))
+            .catch(error => console.log)
     }
 
     const drawToCanvas = () => {
