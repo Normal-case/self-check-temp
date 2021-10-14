@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef} from "react"
 import API from '../api-server'
+import { isMobile } from 'react-device-detect'
 
 const Page5 = () => {
 
@@ -9,11 +10,14 @@ const Page5 = () => {
     const canvasRef = useRef(null)
 
     useEffect(() => {
-        getWebcam((stream => {
-            videoRef.current.srcObject = stream
-        }))
-
-        startOrStop()
+        
+        if(isMobile){
+            getWebcam((stream => {
+                videoRef.current.srcObject = stream
+            }))
+            
+            startOrStop()
+        }
     }, [])
 
     const getWebcam = (callback) => {
@@ -45,7 +49,7 @@ const Page5 = () => {
         formData.append("base64_img", resultImg)
         API.sizeSend(formData)
             .then(resp => console.log(resp))
-            .catch(error => console.log)
+            .catch(error => console.log(error))
     }
 
     const drawToCanvas = () => {
@@ -98,11 +102,16 @@ const Page5 = () => {
 
     return(
         <>
-            <h3>셀프 크기 측정</h3>
-            <video ref={videoRef} autoPlay style={Styles.None} />
-            <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
-            <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
-            <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+            { isMobile ?
+            <div>
+                <h3>셀프 크기 측정</h3>
+                <video ref={videoRef} autoPlay style={Styles.None} />
+                <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
+                <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
+                <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+            </div>
+            : <div><h3>PC 환경이다.</h3></div>
+            }
         </>
     )
 }
