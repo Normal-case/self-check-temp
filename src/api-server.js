@@ -2,6 +2,6 @@ import axios from "axios";
 
 export default class API {
     static imageSend(body){
-        return axios.post("https://plesss2.herokuapp.com/api/", body)
+        return axios.post("http://127.0.0.1:8000/api/", body)
     }
 }

@@ -39,6 +39,11 @@ const Page5 = () => {
         }
     }
 
+    const submitSizeAssume = () => {
+        const formData = new FormData()
+        console.log(resultImg)
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -93,6 +98,7 @@ const Page5 = () => {
             <video ref={videoRef} autoPlay style={Styles.None} />
             <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
             <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
+            <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={!timer}>크기 체크 시작</button>
         </>
     )
 }
