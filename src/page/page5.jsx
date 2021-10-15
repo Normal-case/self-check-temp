@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef} from "react"
 import API from '../api-server'
 import { isMobile } from 'react-device-detect'
+import imageCompression from "browser-image-compression"
 
 const Page5 = () => {
 
     const [timer, setTimer] = useState(undefined)
-    const [resultImg, setResultImg] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -44,7 +44,7 @@ const Page5 = () => {
         }
     }
 
-    const submitSizeAssume = () => {
+    const submitSizeAssume = (resultImg) => {
         const formData = new FormData()
         formData.append("base64_img", resultImg)
         API.sizeSend(formData)
@@ -52,8 +52,16 @@ const Page5 = () => {
             .catch(error => console.log(error))
     }
 
-    const dataURLtoFile = (dataURL) => {
-        var arr = dataURL.split('')
+    const resizeImage = async (targetImage) => {
+        const options = {
+            maxWidthOrHeight: 1280
+        }
+
+        try {
+            const compressedFile = await imageCompression(targetImage, options)
+            submitSizeAssume(compressedFile)
+        }
+        catch (error) { console.log(error) }
     }
 
     const drawToCanvas = () => {
@@ -85,7 +93,7 @@ const Page5 = () => {
             }
 
             if(!timer){
-                setResultImg(ctx.canvas.toDataURL("image/png"))
+                resizeImage(ctx.canvas.toDataURL("image/png"))
             }
         } catch (error) {
             console.log(error)
