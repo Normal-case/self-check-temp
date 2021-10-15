@@ -52,6 +52,10 @@ const Page5 = () => {
             .catch(error => console.log(error))
     }
 
+    const dataURLtoFile = (dataURL) => {
+        var arr = dataURL.split('')
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -81,7 +85,7 @@ const Page5 = () => {
             }
 
             if(!timer){
-                setResultImg(ctx.canvas.toDataURL())
+                setResultImg(ctx.canvas.toDataURL("image/png"))
             }
         } catch (error) {
             console.log(error)
