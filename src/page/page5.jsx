@@ -52,17 +52,37 @@ const Page5 = () => {
             .catch(error => console.log(error))
     }
 
+    const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(b64Data)
+        const byteArrays = []
+
+        for (let offset=0;offset<byteCharacters.length;offset+=sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize)
+
+            const byteNumbers = new Array(slice.length)
+            for(let i=0;i<slice.length;i++) {
+                byteNumbers[i] = slice.charCodeAt(i)
+            }
+
+            const byteArray = new Uint8Array(byteNumbers)
+            byteArrays.push(byteArray)
+        }
+
+        const blob = new Blob(byteArrays, {type: contentType})
+        return blob
+    }
+
     const resizeImage = async (targetImage) => {
-        var image = new Image()
-        image.src = targetImage
-        console.log(image)
-        console.log(targetImage)
+        var block = targetImage.split(';')
+        var cType = block[0].split(':')[1]
+        var realData = block[1].split(',')[1]
+        var blob = b64toBlob(realData, cType)
         const options = {
             maxWidthOrHeight: 1280
         }
 
         try {
-            const compressedFile = await imageCompression(image, options)
+            const compressedFile = await imageCompression(blob, options)
             submitSizeAssume(compressedFile)
         }
         catch (error) { console.log(error) }
