@@ -50,6 +50,7 @@ const Page5 = () => {
         startOrStop()
         setCallOnce(1)
         console.log(savepoint)
+        console.log(callOnce)
         if(savepoint==='now') {
             setSavepoint('notNow')
         } else {
@@ -88,8 +89,7 @@ const Page5 = () => {
     const resizeImage = async (targetImage) => {
         console.log(targetImage)
         console.log(typeof(targetImage))
-        var str = targetImage.src
-        var block = str.split(';')
+        var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
         var blob = b64toBlob(realData, cType)
@@ -135,6 +135,7 @@ const Page5 = () => {
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
                 setCallOnce(callOnce + 1)
+                console.log(callOnce)
             }
         } catch (error) {
             console.log(error)
