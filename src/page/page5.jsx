@@ -55,6 +55,8 @@ const Page5 = () => {
     const resizeImage = async (targetImage) => {
         var image = new Image()
         image.src = targetImage
+        console.log(image)
+        console.log(targetImage)
         const options = {
             maxWidthOrHeight: 1280
         }
