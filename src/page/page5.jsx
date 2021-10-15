@@ -6,6 +6,7 @@ import imageCompression from "browser-image-compression"
 const Page5 = () => {
 
     const [timer, setTimer] = useState(undefined)
+    const [savepoint, setSavepoint] = useState('notNow')
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -41,6 +42,16 @@ const Page5 = () => {
         } else {
             clearInterval(timer)
             setTimer(undefined)
+        }
+    }
+
+    const stopVideo = () => {
+        startOrStop()
+        console.log(savepoint)
+        if(savepoint==='now') {
+            setSavepoint('notNow')
+        } else {
+            setSavepoint('now')
         }
     }
 
@@ -118,7 +129,7 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
-            if(!timer){
+            if(savepoint === 'now'){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
             }
         } catch (error) {
@@ -145,8 +156,8 @@ const Page5 = () => {
                 <h3>셀프 크기 측정</h3>
                 <video ref={videoRef} autoPlay style={Styles.None} />
                 <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
-                <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
-                <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+                <button style={Styles.Button} onClick={stopVideo}>{savepoint === "notNow" ? '촬영하기' : '다시촬영'}</button>
+                <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={savepoint === "notNow"}>크기 체크 시작</button>
             </div>
             : <div><h3>PC 환경이다.</h3></div>
             }
