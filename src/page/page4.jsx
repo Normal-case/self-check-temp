@@ -59,7 +59,7 @@ const Page4 = () => {
   // 사용자가 업로드한 이미지를 thumbnail로 만들어 미리보기 이미지를 만드는 함수
   const handleChangeFile = (compressedFile) => {
     let reader = new FileReader();
-
+    console.log(compressedFile)
     reader.onloadend = () => {
       const base64 = reader.result;
       if(base64) {
