@@ -53,12 +53,14 @@ const Page5 = () => {
     }
 
     const resizeImage = async (targetImage) => {
+        var image = new Image()
+        image.src = targetImage
         const options = {
             maxWidthOrHeight: 1280
         }
 
         try {
-            const compressedFile = await imageCompression(targetImage, options)
+            const compressedFile = await imageCompression(image, options)
             submitSizeAssume(compressedFile)
         }
         catch (error) { console.log(error) }
