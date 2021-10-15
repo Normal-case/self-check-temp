@@ -2,10 +2,10 @@ import axios from "axios";
 
 export default class API {
     static imageSend(body){
-        return axios.post("http://127.0.0.1:8000/api/", body)
+        return axios.post("https://self-check-api.shop/api/", body)
     }
 
     static sizeSend(body){
-        return axios.post("http://127.0.0.1:8000/api/size/", body)
+        return axios.post("https://self-check-api.shop/api/size/", body)
     }
 }
