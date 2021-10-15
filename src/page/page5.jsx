@@ -8,6 +8,7 @@ const Page5 = () => {
     const [timer, setTimer] = useState(undefined)
     const [savepoint, setSavepoint] = useState('notNow')
     const [callOnce, setCallOnce] = useState(1)
+    const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -48,19 +49,17 @@ const Page5 = () => {
 
     const stopVideo = () => {
         startOrStop()
-        setCallOnce(1)
-        console.log(savepoint)
-        console.log(callOnce)
         if(savepoint==='now') {
             setSavepoint('notNow')
         } else {
             setSavepoint('now')
+            setCallOnce(1)
         }
     }
 
-    const submitSizeAssume = (resultImg) => {
+    const submitSizeAssume = () => {
         const formData = new FormData()
-        formData.append("base64_img", resultImg)
+        formData.append("base64_img", resultFile)
         API.sizeSend(formData)
             .then(resp => console.log(resp))
             .catch(error => console.log(error))
@@ -99,7 +98,7 @@ const Page5 = () => {
 
         try {
             const compressedFile = await imageCompression(blob, options)
-            submitSizeAssume(compressedFile)
+            setResultFile(compressedFile)
         }
         catch (error) { console.log(error) }
     }
@@ -132,10 +131,11 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
+            console.log(savepoint)
+            console.log(callOnce)
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
                 setCallOnce(callOnce + 1)
-                console.log(callOnce)
             }
         } catch (error) {
             console.log(error)
