@@ -73,7 +73,9 @@ const Page5 = () => {
     }
 
     const resizeImage = async (targetImage) => {
-        var block = targetImage.split(';')
+        console.log(targetImage)
+        var str = targetImage.src
+        var block = str.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
         var blob = b64toBlob(realData, cType)
