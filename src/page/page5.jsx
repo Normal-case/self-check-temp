@@ -21,7 +21,7 @@ const Page5 = () => {
             
             startOrStop()
         }
-    }, [])
+    }, [callOnce])
 
     const getWebcam = (callback) => {
         try {
