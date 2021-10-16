@@ -4,8 +4,9 @@ import Webcam from 'react-webcam'
 const Page6 = () => {
 
     const webRef = useRef(null)
+    const canvasRef = useRef(null)
     const videoContraints = {
-        facingMode: 'user'
+        facingMode: 'environment'
     }
     const showImage = () => {
         console.log(webRef.current.getScreenshot())
