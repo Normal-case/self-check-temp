@@ -7,25 +7,21 @@ const Page5 = () => {
 
     const [timer, setTimer] = useState(undefined)
     const [savepoint, setSavepoint] = useState('notNow')
-    const [callOnce, setCallOnce] = useState(1)
     const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
     const mounted = useRef(false)
 
     useEffect(() => {
-
-        if(!mounted.current){
-            mounted.current = true
-            if(isMobile){
-                getWebcam((stream => {
-                    videoRef.current.srcObject = stream
-                }))
-                
-                startOrStop()
-            }
+        if(isMobile){
+            getWebcam((stream => {
+                videoRef.current.srcObject = stream
+            }))
+            
+            startOrStop()
         }
-    }, [callOnce])
+        
+    }, [])
 
     const getWebcam = (callback) => {
         try {
@@ -57,10 +53,6 @@ const Page5 = () => {
             setSavepoint('notNow')
         } else {
             setSavepoint('now')
-            setCallOnce(1)
-            console.log('press button-------------')
-            console.log(callOnce)
-            console.log(savepoint)
         }
     }
 
@@ -93,9 +85,7 @@ const Page5 = () => {
     }
 
     const resizeImage = async (targetImage) => {
-        console.log('call resizeImage------------')
-        console.log(callOnce)
-        console.log(savepoint)
+        console.log(targetImage)
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
@@ -139,16 +129,8 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
-            console.log("DrawToCanvas-----------")
-            console.log(callOnce)
-            console.log(savepoint)
-            if(savepoint === 'now' && callOnce === 1){
+            if(savepoint === 'now'){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
-                setCallOnce(2)
-                console.log('inner----if-------------------')
-                console.log(callOnce)
-                console.log(savepoint)
-
             }
         } catch (error) {
             console.log(error)
