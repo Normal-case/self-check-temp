@@ -56,6 +56,7 @@ const Page5 = () => {
             setCallOnce(1)
             console.log('press button-------------')
             console.log(callOnce)
+            console.log(savepoint)
         }
     }
 
@@ -88,8 +89,9 @@ const Page5 = () => {
     }
 
     const resizeImage = async (targetImage) => {
-        console.log(targetImage)
-        console.log(typeof(targetImage))
+        console.log('call resizeImage------------')
+        console.log(callOnce)
+        console.log(savepoint)
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
@@ -138,6 +140,7 @@ const Page5 = () => {
                 setCallOnce(2)
                 console.log('inner----if-------------------')
                 console.log(callOnce)
+                console.log(savepoint)
 
             }
         } catch (error) {
