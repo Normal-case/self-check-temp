@@ -10,7 +10,6 @@ const Page5 = () => {
     const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
-    const mounted = useRef(false)
 
     useEffect(() => {
         if(isMobile){
