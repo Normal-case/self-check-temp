@@ -135,6 +135,9 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
+            console.log("DrawToCanvas-----------")
+            console.log(callOnce)
+            console.log(savepoint)
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
                 setCallOnce(2)
