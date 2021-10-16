@@ -36,8 +36,10 @@ const Page5 = () => {
     }
 
     const startOrStop = () => {
-        const targetImage = canvasRef.current.getScreenshot()
-        resizeImage(targetImage)
+        if(canvasRef){
+            const targetImage = canvasRef.current.getScreenshot()
+            resizeImage(targetImage)
+        }
         if(!timer) {
             const t = setInterval(() => drawToCanvas(), 0.1)
             setTimer(t)
