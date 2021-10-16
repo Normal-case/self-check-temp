@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const page6 = () => {
+const Page6 = () => {
   const [count, setCount] = useState(0);
   const intervalId = useRef(null);
   console.log(`랜더링... count: ${count}`);
@@ -27,4 +27,4 @@ const page6 = () => {
   );
 }
 
-export default page6
+export default Page6
