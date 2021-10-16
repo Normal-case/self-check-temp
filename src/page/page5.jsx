@@ -11,15 +11,19 @@ const Page5 = () => {
     const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
+    const mounted = useRef(false)
 
     useEffect(() => {
-        
-        if(isMobile){
-            getWebcam((stream => {
-                videoRef.current.srcObject = stream
-            }))
-            
-            startOrStop()
+
+        if(!mounted.current){
+            mounted.current = true
+            if(isMobile){
+                getWebcam((stream => {
+                    videoRef.current.srcObject = stream
+                }))
+                
+                startOrStop()
+            }
         }
     }, [callOnce])
 
@@ -107,10 +111,6 @@ const Page5 = () => {
         catch (error) { console.log(error) }
     }
 
-    const explicitSetCallOnce = () => {
-        setCallOnce(2)
-    }
-
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -144,7 +144,7 @@ const Page5 = () => {
             console.log(savepoint)
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
-                explicitSetCallOnce()
+                setCallOnce(2)
                 console.log('inner----if-------------------')
                 console.log(callOnce)
                 console.log(savepoint)
