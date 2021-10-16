@@ -6,11 +6,10 @@ import imageCompression from "browser-image-compression"
 const Page5 = () => {
 
     const [timer, setTimer] = useState(undefined)
-    const [savepoint, setSavepoint] = useState('notNow')
     const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
-
+    
     useEffect(() => {
         if(isMobile){
             getWebcam((stream => {
@@ -37,21 +36,14 @@ const Page5 = () => {
     }
 
     const startOrStop = () => {
+        const targetImage = canvasRef.current.getScreenshot()
+        resizeImage(targetImage)
         if(!timer) {
             const t = setInterval(() => drawToCanvas(), 0.1)
             setTimer(t)
         } else {
             clearInterval(timer)
             setTimer(undefined)
-        }
-    }
-
-    const stopVideo = () => {
-        startOrStop()
-        if(savepoint==='now') {
-            setSavepoint('notNow')
-        } else {
-            setSavepoint('now')
         }
     }
 
@@ -128,9 +120,6 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
-            if(savepoint === 'now'){
-                resizeImage(ctx.canvas.toDataURL("image/png"))
-            }
         } catch (error) {
             console.log(error)
         }
@@ -155,8 +144,8 @@ const Page5 = () => {
                 <h3>셀프 크기 측정</h3>
                 <video ref={videoRef} autoPlay style={Styles.None} />
                 <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
-                <button style={Styles.Button} onClick={stopVideo}>{savepoint === "notNow" ? '촬영하기' : '다시촬영'}</button>
-                <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={savepoint === "notNow"}>크기 체크 시작</button>
+                <button style={Styles.Button} onClick={startOrStop}>{timer === "notNow" ? '촬영하기' : '다시촬영'}</button>
+                <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
             </div>
             : <div><h3>PC 환경이다.</h3></div>
             }
