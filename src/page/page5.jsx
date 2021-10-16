@@ -7,7 +7,7 @@ const Page5 = () => {
 
     const [timer, setTimer] = useState(undefined)
     const [savepoint, setSavepoint] = useState('notNow')
-    const callOnce = 1
+    const [callOnce, setCallOnce] = useState(1)
     const [resultFile, setResultFile] = useState(null)
     const videoRef = useRef(null)
     const canvasRef = useRef(null)
@@ -53,7 +53,9 @@ const Page5 = () => {
             setSavepoint('notNow')
         } else {
             setSavepoint('now')
-            callOnce = 1
+            setCallOnce(1)
+            console.log('press button-------------')
+            console.log(callOnce)
         }
     }
 
@@ -131,11 +133,12 @@ const Page5 = () => {
                 ctx.fillRect(25, half + 62, blockSize, blockSize)
             }
 
-            console.log(savepoint)
-            console.log(callOnce)
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
-                callOnce += 1
+                setCallOnce(2)
+                console.log('inner----if-------------------')
+                console.log(callOnce)
+
             }
         } catch (error) {
             console.log(error)
