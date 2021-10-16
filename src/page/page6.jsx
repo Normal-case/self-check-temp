@@ -11,6 +11,7 @@ const Page6 = () => {
     return (
         <>
         <p>React WebCam</p>
+        <Webcam ref={webRef} />
         <button onClick={showImage}>Capture Image</button>
         </>
     );
