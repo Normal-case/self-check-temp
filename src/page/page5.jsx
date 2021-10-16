@@ -107,6 +107,10 @@ const Page5 = () => {
         catch (error) { console.log(error) }
     }
 
+    const explicitSetCallOnce = () => {
+        setCallOnce(2)
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -140,7 +144,7 @@ const Page5 = () => {
             console.log(savepoint)
             if(savepoint === 'now' && callOnce === 1){
                 resizeImage(ctx.canvas.toDataURL("image/png"))
-                setCallOnce(2)
+                explicitSetCallOnce()
                 console.log('inner----if-------------------')
                 console.log(callOnce)
                 console.log(savepoint)
