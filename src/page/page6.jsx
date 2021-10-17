@@ -26,7 +26,6 @@ const Page6 = () => {
         } else {
             console.log(webRef.current.getScreenshot())
             console.log(canvasRef.current.toDataURL())
-            console.log(canvasRef.current)
             clearInterval(timer)
             setTimer(undefined)
         }
@@ -103,7 +102,7 @@ const Page6 = () => {
         <Webcam
          ref={webRef}
          videoConstraints={videoContraints}
-         style={Styles.None}
+         style={Styles.Hide}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
         <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
