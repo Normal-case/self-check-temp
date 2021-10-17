@@ -47,6 +47,7 @@ const Page6 = () => {
         }
 
         const blob = new Blob(byteArrays, {type: contentType})
+        return blob
     }
 
     const drawToCanvas = () => {
@@ -60,9 +61,8 @@ const Page6 = () => {
                     const img = webRef.current.getScreenshot()
                     if(img){
                         var block = img.split(';')
-                        var cType = block[0].split(':')[1]
                         var realData = block[1].split(',')[1]
-                        var blob = b64ToBlob(realData, cType)
+                        var blob = b64ToBlob(realData, "image/jpg")
                     }
 
                     console.log(blob)
