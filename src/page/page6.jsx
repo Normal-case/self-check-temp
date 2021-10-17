@@ -1,6 +1,7 @@
 import { StylesContext } from "@material-ui/styles";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Webcam from 'react-webcam'
+import { isMobile } from 'react-device-detect'
 
 const Page6 = () => {
 
@@ -11,6 +12,12 @@ const Page6 = () => {
     const videoContraints = {
         facingMode: 'environment'
     }
+
+    useEffect(() => {
+        if(isMobile){
+            startOrStop()
+        }
+    }, [])
 
     const startOrStop = () => {
         if(!timer) {
@@ -76,7 +83,7 @@ const Page6 = () => {
          style={Styles.None}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
-        <button onClick={startOrStop} style={Styles.Button}>{!timer ? '촬영하기' : '다시촬영'}</button>
+        <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
         </>
     );
 }
