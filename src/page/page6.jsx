@@ -50,19 +50,6 @@ const Page6 = () => {
         return blob
     }
 
-    const dataURLtoFile = (dataurl, fileName) => {
-        var arr = dataurl.split(','),
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
-
-        while(n--){
-            u8arr[n] = bstr.charAt(n);
-        }
-
-        return new File([u8arr], fileName, {type:"image/jpg"})
-    }
-
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -72,13 +59,13 @@ const Page6 = () => {
             if(ctx && ctx !== null) {
                 if (webRef.current) {
                     const img = webRef.current.getScreenshot()
-                    var file = null
-                    if(img){
-                        file = dataURLtoFile(img, 'screen.jpg')
+                    var image = new Image()
+                    image.onload = function() {
+                        ctx.drawImage(image, 0, 0, canvasRef.current.width, canvasRef.current.height)
                     }
-
-                    console.log(file)
-                    ctx.drawImage(file, 0, 0, canvasRef.current.width, canvasRef.current.height)
+                    if(img){
+                        image.src = img
+                    }
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)
@@ -120,7 +107,7 @@ const Page6 = () => {
         <Webcam
          ref={webRef}
          videoConstraints={videoContraints}
-         style={Styles.Video}
+         style={Styles.None}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
         <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
