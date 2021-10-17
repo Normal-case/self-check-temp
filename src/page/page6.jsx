@@ -84,7 +84,7 @@ const Page6 = () => {
         <Webcam
          ref={webRef}
          videoConstraints={videoContraints}
-         style={Styles.None}
+         style={Styles.Video}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
         <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
