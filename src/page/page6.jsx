@@ -31,7 +31,7 @@ const Page6 = () => {
 
             if(ctx && ctx !== null) {
                 if (webRef.current) {
-                    ctx.drawImage(webRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+                    ctx.drawImage(webRef.current.video, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)
@@ -76,7 +76,7 @@ const Page6 = () => {
          style={Styles.None}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
-        <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
+        <button onClick={startOrStop} style={Styles.Button}>{!timer ? '촬영하기' : '다시촬영'}</button>
         </>
     );
 }
