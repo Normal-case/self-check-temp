@@ -25,6 +25,8 @@ const Page6 = () => {
             setTimer(t)
         } else {
             console.log(webRef.current.getScreenshot())
+            console.log(canvasRef.current)
+            console.log(canvasRef.current.getScreenshot())
             clearInterval(timer)
             setTimer(undefined)
         }
