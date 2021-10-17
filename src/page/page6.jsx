@@ -39,8 +39,10 @@ const Page6 = () => {
             if(ctx && ctx !== null) {
                 if (webRef.current) {
                     console.log(webRef.current)
-                    console.log(typeof(webRef.current))
-                    ctx.drawImage(webRef.current.getScreenshot(), 0, 0, canvasRef.current.width, canvasRef.current.height)
+                    const img = webRef.current.getScreenshot()
+                    console.log(typeof(img))
+                    console.log(img)
+                    ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)

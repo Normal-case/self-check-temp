@@ -100,6 +100,7 @@ const Page5 = () => {
 
             if(ctx && ctx !== null) {
                 if (videoRef.current) {
+                    console.log(videoRef.current)
                     ctx.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
