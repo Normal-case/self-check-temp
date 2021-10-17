@@ -53,22 +53,26 @@ const Page6 = () => {
     }
 
     const submitSizeAssume = () => {
-        var block = resultImg.split(';')
+        const compressedFile = resizeImage(resultImg)
+        const formData = new FormData()
+        formData.append('screen_img', compressedFile)
+        API.sizeSend(formData)
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error))
+    }
+
+    const resizeImage = async (targetImage) => {
+        var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
         var blob = b64ToBlob(realData, cType)
-
         const options = {
             maxWidthOrHeight: 1280
         }
 
         try {
             const compressedFile = await imageCompression(blob, options)
-            const formData = new FormData()
-            formData.append('screen_img', compressedFile)
-            API.sizeSend(formData)
-                .then(resp => console.log(resp))
-                .catch(error => console.log(error))
+            return compressedFile
         } catch (error) {
             console.log(error)
         }
