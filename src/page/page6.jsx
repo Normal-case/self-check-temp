@@ -30,8 +30,23 @@ const Page6 = () => {
         }
     }
 
-    const b64ToBlob = (realData, cType) => {
+    const b64ToBlob = (realData, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(realData)
+        const byteArrays = []
 
+        for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
+            const slice = byteCharacters.slice(offset, offset + sliceSize)
+
+            const byteNumbers = new Array(slice.length)
+            for(let i=0;i<slice.length;i++){
+                byteNumbers[i] = slice.charCodeAt(i)
+            }
+
+            const byteArray = new Uint8Array(byteNumbers)
+            byteArrays.push(byteArray)
+        }
+
+        const blob = new Blob(byteArrays, {type: contentType})
     }
 
     const drawToCanvas = () => {
@@ -43,11 +58,15 @@ const Page6 = () => {
             if(ctx && ctx !== null) {
                 if (webRef.current) {
                     const img = webRef.current.getScreenshot()
-                    var block = img.split(';')
-                    var cType = block[0].split(':')[1]
-                    var realData = block[1].split(',')[1]
-                    var blob = b64ToBlob(realData, cType)
-                    ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height)
+                    if(img){
+                        var block = img.split(';')
+                        var cType = block[0].split(':')[1]
+                        var realData = block[1].split(',')[1]
+                        var blob = b64ToBlob(realData, cType)
+                    }
+
+                    console.log(blob)
+                    ctx.drawImage(blob, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)
