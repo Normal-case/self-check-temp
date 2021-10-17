@@ -58,14 +58,7 @@ const Page6 = () => {
 
             if(ctx && ctx !== null) {
                 if (webRef.current) {
-                    const img = webRef.current.getScreenshot()
-                    var image = new Image()
-                    image.onload = function() {
-                        ctx.drawImage(image, 0, 0, canvasRef.current.width, canvasRef.current.height)
-                    }
-                    if(img){
-                        image.src = img
-                    }
+                    ctx.drawImage(webRef.current.video, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)
@@ -107,7 +100,7 @@ const Page6 = () => {
         <Webcam
          ref={webRef}
          videoConstraints={videoContraints}
-         style={Styles.None}
+         style={Styles.Video}
         />
         <canvas ref={canvasRef} style={Styles.Video} />
         <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
