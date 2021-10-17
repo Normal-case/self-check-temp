@@ -144,7 +144,7 @@ const Page5 = () => {
                 <h3>셀프 크기 측정</h3>
                 <video ref={videoRef} autoPlay style={Styles.None} />
                 <canvas ref={canvasRef} autoPlay style={Styles.Canvas} />
-                <button style={Styles.Button} onClick={startOrStop}>{timer === "notNow" ? '촬영하기' : '다시촬영'}</button>
+                <button style={Styles.Button} onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
                 <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
             </div>
             : <div><h3>PC 환경이다.</h3></div>
