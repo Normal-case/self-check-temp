@@ -30,6 +30,10 @@ const Page6 = () => {
         }
     }
 
+    const b64ToBlob = (realData, cType) => {
+
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -38,10 +42,11 @@ const Page6 = () => {
 
             if(ctx && ctx !== null) {
                 if (webRef.current) {
-                    console.log(webRef.current)
                     const img = webRef.current.getScreenshot()
-                    console.log(typeof(img))
-                    console.log(img)
+                    var block = img.split(';')
+                    var cType = block[0].split(':')[1]
+                    var realData = block[1].split(',')[1]
+                    var blob = b64ToBlob(realData, cType)
                     ctx.drawImage(img, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
