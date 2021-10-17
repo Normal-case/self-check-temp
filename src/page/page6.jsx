@@ -26,8 +26,8 @@ const Page6 = () => {
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
-            canvasRef.current.width = webRef.current.videoWidth
-            canvasRef.current.height = webRef.current.videoHeight
+            canvasRef.current.width = webRef.current.video.videoWidth
+            canvasRef.current.height = webRef.current.video.videoHeight
 
             if(ctx && ctx !== null) {
                 if (webRef.current) {
