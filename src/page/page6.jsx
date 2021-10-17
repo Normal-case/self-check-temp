@@ -26,12 +26,12 @@ const Page6 = () => {
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
-            canvasRef.current.width = videoRef.current.videoWidth
-            canvasRef.current.height = videoRef.current.videoHeight
+            canvasRef.current.width = webRef.current.videoWidth
+            canvasRef.current.height = webRef.current.videoHeight
 
             if(ctx && ctx !== null) {
-                if (videoRef.current) {
-                    ctx.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+                if (webRef.current) {
+                    ctx.drawImage(webRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
                 const half = parseInt(canvasRef.current.height / 2)
