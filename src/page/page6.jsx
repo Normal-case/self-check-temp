@@ -1,11 +1,13 @@
-import { StylesContext } from "@material-ui/styles";
 import React, { useState, useRef, useEffect } from "react";
+import API from '../api-server'
 import Webcam from 'react-webcam'
 import { isMobile } from 'react-device-detect'
+import imageCompression from "browser-image-compression"
 
 const Page6 = () => {
 
     const [timer, setTimer] = useState(undefined)
+    const [resultImg, setResultImg] = useState(null)
     const webRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -24,8 +26,7 @@ const Page6 = () => {
             const t = setInterval(() => drawToCanvas(), 0.1)
             setTimer(t)
         } else {
-            console.log(webRef.current.getScreenshot())
-            console.log(canvasRef.current.toDataURL())
+            setResultImg(canvasRef.current.toDataURL())
             clearInterval(timer)
             setTimer(undefined)
         }
@@ -49,6 +50,28 @@ const Page6 = () => {
 
         const blob = new Blob(byteArrays, {type: contentType})
         return blob
+    }
+
+    const submitSizeAssume = () => {
+        var block = resultImg.split(';')
+        var cType = block[0].split(':')[1]
+        var realData = block[1].split(',')[1]
+        var blob = b64ToBlob(realData, cType)
+
+        const options = {
+            maxWidthOrHeight: 1280
+        }
+
+        try {
+            const compressedFile = await imageCompression(blob, options)
+            const formData = new FormData()
+            formData.append('screen_img', compressedFile)
+            API.sizeSend(formData)
+                .then(resp => console.log(resp))
+                .catch(error => console.log(error))
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const drawToCanvas = () => {
@@ -98,14 +121,17 @@ const Page6 = () => {
 
     return (
         <>
-        <p>React WebCam</p>
-        <Webcam
-         ref={webRef}
-         videoConstraints={videoContraints}
-         style={Styles.Hide}
-        />
-        <canvas ref={canvasRef} style={Styles.Video} />
-        <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
+        { isMobile ?
+        <div>
+            <h3>셀프 크기 측정</h3>
+            <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+            <canvas ref={canvasRef} style={Styles.Video} />
+            <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
+            <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+        </div>
+        : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>
+        }
+
         </>
     );
 }
