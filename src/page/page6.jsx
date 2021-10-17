@@ -25,8 +25,8 @@ const Page6 = () => {
             setTimer(t)
         } else {
             console.log(webRef.current.getScreenshot())
+            console.log(canvasRef.current.toDataURL())
             console.log(canvasRef.current)
-            console.log(canvasRef.current.getScreenshot())
             clearInterval(timer)
             setTimer(undefined)
         }
@@ -86,7 +86,8 @@ const Page6 = () => {
     }
 
     const Styles = {
-        None: {width: '0%'},
+        None: {display: 'none'},
+        Hide: {width: '0%'},
         Video: {width:'100%'},
         Button: {
             width: '100px',
