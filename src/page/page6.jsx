@@ -63,6 +63,7 @@ const Page6 = () => {
     }
 
     const resizeImage = async (targetImage) => {
+        console.log('resizeImage')
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
@@ -72,6 +73,7 @@ const Page6 = () => {
         }
 
         try {
+            console.log('try inner')
             console.log(blob)
             const compressedFile = await imageCompression(blob, options)
             return compressedFile

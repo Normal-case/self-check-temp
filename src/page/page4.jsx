@@ -47,6 +47,7 @@ const Page4 = () => {
     }
 
     try {
+      console.log(targetImage)
       const compressedFile = await imageCompression(targetImage, options);
       setSelectedFile(compressedFile)
       handleChangeFile(compressedFile)
