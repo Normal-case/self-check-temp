@@ -153,7 +153,7 @@ const Page6 = () => {
                     <canvas ref={canvasRef} style={Styles.Video} />
                     <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
                     <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
-                </div> : <>{resultResponse}</>
+                </div> : <>{console.log(resultResponse)}</>
             // :  <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' />
             }
         </>
