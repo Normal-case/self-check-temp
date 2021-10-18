@@ -54,6 +54,7 @@ const Page6 = () => {
 
     const submitSizeAssume = () => {
         const compressedFile = resizeImage(resultImg)
+        console.log(compressedFile)
         const formData = new FormData()
         formData.append('screen_img', compressedFile)
         API.sizeSend(formData)

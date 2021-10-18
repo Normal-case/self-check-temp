@@ -42,7 +42,6 @@ const Page4 = () => {
 
   // 사용자가 업로드한 이미지를 축소하는 함수
   const resizeImage = async (targetImage) => {
-    console.log(targetImage)
     const options = {
       maxWidthOrHeight: 1280
     }
@@ -60,7 +59,6 @@ const Page4 = () => {
   // 사용자가 업로드한 이미지를 thumbnail로 만들어 미리보기 이미지를 만드는 함수
   const handleChangeFile = (compressedFile) => {
     let reader = new FileReader();
-    console.log(compressedFile)
     reader.onloadend = () => {
       const base64 = reader.result;
       if(base64) {
@@ -78,6 +76,7 @@ const Page4 = () => {
   // 셀프체크 버튼을 눌렀을 때 서버로 압축된 파일을 전송하는 함수
   const submitImage = () => {
     const formData = new FormData()
+    console.log(selectedFile)
     formData.append('img', selectedFile)
     setSpinner(true)
     API.imageSend(formData)
