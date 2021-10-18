@@ -76,7 +76,7 @@ const Page6 = () => {
         console.log('inner submit')
         console.log(resultImg)
         const formData = new FormData()
-        formData.append('screen_img', compressedFile)
+        formData.append('screen_img', resultImg)
         API.sizeSend(formData)
             .then(resp => console.log(resp))
             .catch(error => console.log(error))
