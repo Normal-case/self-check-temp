@@ -117,7 +117,7 @@ const Page6 = () => {
                 ctx.fillRect((x + w), y, blockSize, blockSize)
         
                 ctx.fillRect((x + w - blockSize), (y + h), 2 * blockSize, blockSize)
-                ctx.fillRect(x, (y + h - blockSize), blockSize, blockSize)
+                ctx.fillRect((x + w), (y + h - blockSize), blockSize, blockSize)
         
                 ctx.fillRect((x - blockSize), (y + h - blockSize), blockSize, 2 * blockSize)
                 ctx.fillRect(x, (y + h), blockSize, blockSize)
