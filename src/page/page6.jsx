@@ -10,6 +10,7 @@ const Page6 = () => {
     const [timer, setTimer] = useState(undefined)
     const [resultImg, setResultImg] = useState(null)
     const [spinner, setSpinner] = useState(false)
+    const [pageName, setPageName] = useState('uploadPage')
     const [resultResponse, setResultResponse] = useState(null)
     const webRef = useRef(null)
     const canvasRef = useRef(null)
@@ -68,6 +69,7 @@ const Page6 = () => {
         setResultResponse(resp)
         console.log(resp)
         setSpinner(false)
+        setPageName('resultPage')
     }
 
     const resizeImage = async (targetImage) => {
@@ -135,22 +137,26 @@ const Page6 = () => {
     return (
         <>
         { isMobile ?
-        <div>
-            { spinner ? 
-                <div className='modal'>
-                    <div className='spinnerModal'>
-                        <Loader type="Circles" color="#00BFFF" height={100} width={100} /><br />
-                        <span className="selfCheckDelayText">셀프 체크 중입니다...</span>
-                    </div>
-                </div> : null
+        <>
+            { pageName === 'uploadPage' ?
+                <div>
+                    { spinner ? 
+                        <div className='modal'>
+                            <div className='spinnerModal'>
+                                <Loader type="Circles" color="#00BFFF" height={100} width={100} /><br />
+                                <span className="selfCheckDelayText">셀프 체크 중입니다...</span>
+                            </div>
+                        </div> : null
+                    }
+                    <h3>셀프 크기 측정</h3>
+                    <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+                    <canvas ref={canvasRef} style={Styles.Video} />
+                    <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
+                    <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+                </div>
+            :  <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' />
             }
-            <h3>셀프 크기 측정</h3>
-            <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
-            <canvas ref={canvasRef} style={Styles.Video} />
-            <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
-            <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
-            { resultResponse['data']['after_detection'] ? <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' /> : null }
-        </div>
+        </>
         : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>
         }
 
