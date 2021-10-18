@@ -149,7 +149,7 @@ const Page6 = () => {
             <canvas ref={canvasRef} style={Styles.Video} />
             <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
             <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
-            {/* <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' /> */}
+            { resultResponse['data']['after_detection'] ? <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' /> : null }
         </div>
         : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>
         }
