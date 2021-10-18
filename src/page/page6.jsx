@@ -102,19 +102,25 @@ const Page6 = () => {
 
                 const half = parseInt(canvasRef.current.height / 2)
                 const blockSize = 7
+                // Rect => (x, y, w, h)
+                const x = canvasRef.current.width * 0.1
+                const y = canvasRef.current.height * 0.4
+                const w = y * 0.2 * 88 / 125
+                const h = height * 0.2
 
                 ctx.fillStyle = "white"
-                ctx.fillRect((25 - blockSize), half - (62 + blockSize), blockSize, 2 * blockSize)
-                ctx.fillRect(25, half - (62 + blockSize), blockSize, blockSize)
+
+                ctx.fillRect((x - blockSize), (y - blockSize), blockSize, 2 * blockSize)
+                ctx.fillRect(x, (y - blockSize), blockSize, blockSize)
                 
-                ctx.fillRect((113 - blockSize), half - (62 + blockSize), 2 * blockSize, blockSize)
-                ctx.fillRect(113, half - 62, blockSize, blockSize)
+                ctx.fillRect((x + w - blockSize), (y - blockSize), 2 * blockSize, blockSize)
+                ctx.fillRect((x + w), y, blockSize, blockSize)
         
-                ctx.fillRect((113 - blockSize), half + 62, 2 * blockSize, blockSize)
-                ctx.fillRect(113, half + (62 - blockSize), blockSize, blockSize)
+                ctx.fillRect((x + w - blockSize), (y + h), 2 * blockSize, blockSize)
+                ctx.fillRect(x, (y + h - blockSize), blockSize, blockSize)
         
-                ctx.fillRect((25 - blockSize), half + (62 - blockSize), blockSize, 2 * blockSize)
-                ctx.fillRect(25, half + 62, blockSize, blockSize)
+                ctx.fillRect((x - blockSize), (y + h - blockSize), blockSize, 2 * blockSize)
+                ctx.fillRect(x, (y + h), blockSize, blockSize)
             }
 
         } catch (error) {
