@@ -26,7 +26,7 @@ const Page6 = () => {
             const t = setInterval(() => drawToCanvas(), 0.1)
             setTimer(t)
         } else {
-            setResultImg(canvasRef.current.toDataURL())
+            resizeImage(canvasRef.current.toDataURL())
             clearInterval(timer)
             setTimer(undefined)
         }
@@ -73,8 +73,8 @@ const Page6 = () => {
     }
 
     const submitSizeAssume = () => {
-        const compressedFile = resizeImage(resultImg)
-        console.log(compressedFile)
+        console.log('inner submit')
+        console.log(resultImg)
         const formData = new FormData()
         formData.append('screen_img', compressedFile)
         API.sizeSend(formData)
@@ -96,7 +96,7 @@ const Page6 = () => {
             console.log('try inner')
             console.log(blob)
             const compressedFile = await imageCompression(blob, options)
-            return compressedFile
+            setResultImg(compressedFile)
         } catch (error) {
             console.log(error)
         }
