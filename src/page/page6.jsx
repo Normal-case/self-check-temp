@@ -52,6 +52,26 @@ const Page6 = () => {
         return blob
     }
 
+    const b64ToFile = (realData, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(realData)
+        const byteArrays = []
+
+        for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
+            const slice = byteCharacters.slice(offset, offset + sliceSize)
+
+            const byteNumbers = new Array(slice.length)
+            for(let i=0;i<slice.length;i++){
+                byteNumbers[i] = slice.charCodeAt(i)
+            }
+
+            const byteArray = new Uint8Array(byteNumbers)
+            byteArrays.push(byteArray)
+        }
+
+        const file = new File(byteArrays, 'send.png', {type: contentType})
+        return file
+    }
+
     const submitSizeAssume = () => {
         const compressedFile = resizeImage(resultImg)
         console.log(compressedFile)
@@ -67,7 +87,7 @@ const Page6 = () => {
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
-        var blob = b64ToBlob(realData, cType)
+        var blob = b64ToFile(realData, cType)
         const options = {
             maxWidthOrHeight: 1280
         }
