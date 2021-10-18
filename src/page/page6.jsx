@@ -3,11 +3,14 @@ import API from '../api-server'
 import Webcam from 'react-webcam'
 import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
+import Loader from "react-loader-spinner"
 
 const Page6 = () => {
 
     const [timer, setTimer] = useState(undefined)
     const [resultImg, setResultImg] = useState(null)
+    const [spinner, setSpinner] = useState(false)
+    const [resultResponse, setResultResponse] = useState(null)
     const webRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -32,26 +35,6 @@ const Page6 = () => {
         }
     }
 
-    const b64ToBlob = (realData, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(realData)
-        const byteArrays = []
-
-        for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
-            const slice = byteCharacters.slice(offset, offset + sliceSize)
-
-            const byteNumbers = new Array(slice.length)
-            for(let i=0;i<slice.length;i++){
-                byteNumbers[i] = slice.charCodeAt(i)
-            }
-
-            const byteArray = new Uint8Array(byteNumbers)
-            byteArrays.push(byteArray)
-        }
-
-        const blob = new Blob(byteArrays, {type: contentType})
-        return blob
-    }
-
     const b64ToFile = (realData, contentType='', sliceSize=512) => {
         const byteCharacters = atob(realData)
         const byteArrays = []
@@ -73,17 +56,20 @@ const Page6 = () => {
     }
 
     const submitSizeAssume = () => {
-        console.log('inner submit')
-        console.log(resultImg)
         const formData = new FormData()
         formData.append('screen_img', resultImg)
+        setSpinner(true)
         API.sizeSend(formData)
-            .then(resp => console.log(resp))
+            .then(resp => getResponse(resp))
             .catch(error => console.log(error))
     }
 
+    const getResponse = (resp) => {
+        setResultResponse(resp)
+        setSpinner(false)
+    }
+
     const resizeImage = async (targetImage) => {
-        console.log('resizeImage')
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
         var realData = block[1].split(',')[1]
@@ -93,8 +79,6 @@ const Page6 = () => {
         }
 
         try {
-            console.log('try inner')
-            console.log(blob)
             const compressedFile = await imageCompression(blob, options)
             setResultImg(compressedFile)
         } catch (error) {
@@ -151,11 +135,20 @@ const Page6 = () => {
         <>
         { isMobile ?
         <div>
+            { spinner ? 
+                <div className='modal'>
+                    <div className='spinnerModal'>
+                        <Loader type="Circles" color="#00BFFF" height={100} width={100} /><br />
+                        <span className="selfCheckDelayText">셀프 체크 중입니다...</span>
+                    </div>
+                </div> : null
+            }
             <h3>셀프 크기 측정</h3>
             <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
             <canvas ref={canvasRef} style={Styles.Video} />
             <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
             <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
+            <img src={'data:image/gif;base64,' + resultResponse['data']['after_dection']} alt='' className='resultImg' />
         </div>
         : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>
         }
