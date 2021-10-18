@@ -72,6 +72,7 @@ const Page6 = () => {
         }
 
         try {
+            console.log(blob)
             const compressedFile = await imageCompression(blob, options)
             return compressedFile
         } catch (error) {
