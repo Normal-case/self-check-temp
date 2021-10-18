@@ -106,7 +106,7 @@ const Page6 = () => {
                 const x = canvasRef.current.width * 0.1
                 const y = canvasRef.current.height * 0.4
                 const w = y * 0.2 * 88 / 125
-                const h = height * 0.2
+                const h = canvasRef.current.height * 0.2
 
                 ctx.fillStyle = "white"
 
