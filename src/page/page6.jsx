@@ -100,7 +100,6 @@ const Page6 = () => {
                     ctx.drawImage(webRef.current.video, 0, 0, canvasRef.current.width, canvasRef.current.height)
                 }
 
-                const half = parseInt(canvasRef.current.height / 2)
                 const blockSize = 7
                 // Rect => (x, y, w, h)
                 const x = canvasRef.current.width * 0.1

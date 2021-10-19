@@ -141,9 +141,9 @@ const Page4 = () => {
           <input type='file' id='input-file' style={{display:'none'}} onChange={(e) => resizeImage(e.target.files[0])} />
 
           <ul className="caution_ul">
-            <li><img src="img/check.png" width="24px" className="photoCheck" /> <b>무늬가 없는 배경</b>에서 촬영해주세요.</li>
-            <li><img src="img/check.png" width="24px" className="photoCheck" /> <b>물품 전체</b>가 나오도록 촬영해주세요.</li>
-            <li><img src="img/check.png" width="24px" className="photoCheck" /> <b>물품이 겹치지 않게</b> 촬영해주세요.</li>
+            <li>➤  <b>무늬가 없는 배경</b>에서 촬영해주세요.</li>
+            <li>➤  <b>물품 전체</b>가 나오도록 촬영해주세요.</li>
+            <li>➤  <b>물품이 겹치지 않게</b> 촬영해주세요.</li>
           </ul>
 
           <button className="selfCheckBtn" disabled={!uploaded} onClick={submitImage}>셀프 체크 시작!</button>

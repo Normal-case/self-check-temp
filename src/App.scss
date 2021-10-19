@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .pageWrap {
   max-width: 700px;
   min-width: 320px;
@@ -8,23 +12,36 @@
   text-decoration:none;
 }
 
+.firstPageWrap{
+  margin:24px auto 0;
+  padding:0;
+}
+
 .arrowWrap{
   margin: 100px auto 0;
 }
 
 .pageWrap img{
   margin: 0 auto;
+  border-radius:20px;
+}
+
+.pageWrap .ImgCont{
+  margin: 0 auto 24px;
+  display:flex;
+  flex-direction:column;
+  border-radius:0px;
 }
 
 .pageWrap button#simple-tab-1, #simple-tab-0{
 position:relative;
 top:16px;
 font-size:16px;
-font-weight:900;
+font-weight:500;
 }
 
 .MuiTabs-indicator{
-  height:4px !important;
+  height:6px !important;
 
 }
 
@@ -34,46 +51,50 @@ padding:0;
 height:10px;
 }
 
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+  color:#333;
+
+}
+
 .MainText{
   color:#333;
-  font-weight:400;
   line-height:1;
   font-size:14px;
-margin:0 auto;
-padding:0;
+  margin:0 auto;
+  padding:0;
 }
 
 ul{
     list-style:none;
-    width:320px;
-    margin: 48px auto 120px;
+    width:100%;
+    margin: 48px auto;
     padding:0;
 }
 
 
 .pageWrap h2{
-  width:75%;
+  width:65%;
   margin: 24px auto 0;
-  border-bottom: 15px solid #47acff;
+  border-bottom: 8px solid #47acff;
 }
 
 
 .pageWrap h3{
-  font-size:24px;
- margin:16px auto 8px;
+  font-size:16px;
+ margin:8px auto 4px;
  padding:0;
 }
 
 .pageWrap p{
   color:#00acff;
-  font-weight:700;
-  font-size:14px;
+  font-weight:400;
+  font-size:12px;
   padding:0;
   margin:0;
 }
 
 .pageWrap .plane{
-  width:200px;
+  width:124px;
   margin: 0 auto;
 }
 
@@ -89,43 +110,45 @@ ul{
 }
 
 .pageWrap .frontarrow{
-  width:60px;
+  width:48px;
+  margin: 0;
 }
 
 .pageWrap .car{
-  width:100px;
+  width:160px;
   margin: 0 auto;
+  border-radius: 0;
 }
 
 .pageWrap .BackIcon{
-  position:relative;
-  bottom:60px;
-  width:100px;
+  position:absolute;
+ top:32px;
+  width:32px;
 }
 
 
 .pageWrap ul li{
 line-height:2;
-font-size:16px;
+font-size:14px;
 padding:0;
 margin:0 auto;
 }
 
 .selfCheckDelayText{
-font-weight:900;
+font-weight:700;
 }
 
 footer{
   width:100%;
-  fisplay:flex;
+  display:flex;
   flex-direction:row;
-  align-item:center;
+  align-items:center;
   justify-content:space-around;
 }
 
 footer p{
   width:100%;
-  fisplay:flex;
+  display:flex;
   flex-direction:row;
   justify-content:space-around;
 }
@@ -149,14 +172,13 @@ footer p{
   margin: 0 auto;
   margin-bottom: 17px;
   display:flex;
-  align-item:center;
+  align-items:center;
   justify-content:center;
 }
 
 .downloadClearWrap{
   border:8px solid #368BFF;
   border-radius:20px;
-  flex-direction:column;
 }
 
 .downloadWrap img{
@@ -165,16 +187,15 @@ align-self:center;
 
 }
 
-.pageWrap button{
+.pageWrap .MuiTabs-flexContainer button{
   width:200px;
   height:50px;
-  color:#fff;
+  color:#333 !important;
   font-size:20px;
   margin: 24px auto 16px;
-
-  border: none;
-  border-radius: 50px;
+  padding: 0;
 }
+
 
 .photoCheck{
  position:relative;
@@ -188,6 +209,7 @@ align-self:center;
 .afterBtn{
   background-color:#ccc;
 }
+
 
 .checkStartBtn{
   width:240px !important;
@@ -218,11 +240,12 @@ align-self:center;
 min-width:250px !important;
 max-width:400px !important;
   height:80px !important;
-  background: #052170 !important;
+  background: #368BFF !important;
   font-weight:900 !important;
   font-size:30px !important;
   border-radius: 10px !important;
   cursor: pointer;
+  color:#fff;
 }
 
 .selfCheckBtn:disabled{
@@ -236,6 +259,7 @@ max-width:400px !important;
   border-radius: 10px !important;
   cursor: default;
 }
+
 
 .sizeCheckBtn{
   width:80% !important;

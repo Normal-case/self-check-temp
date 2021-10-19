@@ -1,10 +1,8 @@
 import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
-// import page1 from "../page/page1.jsx";
+import { Button, Tabs, Tab } from '@mui/material';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -47,39 +45,51 @@ export default function TabNav() {
   };
 
   return (
-        <div className="pageWrap">
+        <div className="pageWrap firstPageWrap">
     <img src="img/plane.svg" className="plane" />
   
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="크기 체크" {...a11yProps(0)} />
-          <Tab label="셀프 체크" {...a11yProps(1)} />
-  
+          <Tab label="셀프 체크" {...a11yProps(0)} style={{width:20, color:'#001189'}} />
+          <Tab label="크기 측정" {...a11yProps(1)} style={{width:20, color:'#001189'}} />
+          <Tab label="부피 측정" {...a11yProps(0)} style={{width:20, color:'#001189'}} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <img src="img/cont1.jpeg" width="100%" />
+        <img src="img/cont1.svg" className="ImgCont" width="60" />
      <span className="MainText">
-    내가 가져가는 물건들 중에서 <br /> 기내반입이 가능한 물품이 있는지 헷갈리다면 <br />
-항공보안 인공지능을 이용해보세요! <br /> <span className="textImportant">사진을 찍을 수 있는 핸드폰</span>만 있으면 됩니다.
+기내 반입금지 물품, 집에서는 체크할 수 없을까요? <br />
+가능합니다! 항공보안 인공지능을 이용해보세요. <br /> 사진을 찍을 수 있는 <span className="textImportant">핸드폰</span>만 있으면 됩니다.
      </span>
 
-<Link to="/page2"> <img src="img/arrow.png" className="arrow"/></Link>
-<h1>시작하기</h1>
+<br /><br /><br />
+ <Link to="/page2"> <Button variant="outlined">셀프체크 시작하기</Button> </Link>
 
       </TabPanel>
       <TabPanel value={value} index={1}>
-     <img src="img/cont2.jpeg" width="100%" />
+     <img src="img/cont2.svg" className="ImgCont" width="100" />
   <span className="MainText">
-꼭 가져가야 하는 물건이 <br /> 크기가 커서 헷갈리세요? <br />
-원활히 크기를 체크하기 위한 준비물로 <br /> <span className="textImportant">여권, 혹은 A4용지</span>를 준비해주세요.
+꼭 가져가야 하는 물건이 있는데, <br />반입금지 규정은 너무 많고 복잡한가요? <br />
+디테일한 감정을 위해 크기 측정을 해보세요! <br />항공보안 인공지능이 함께합니다. <br /> <span className="textImportant">여권, 혹은 A4용지</span>를 준비해주세요.
      </span>
 
-<Link to="/page2"> <img src="img/arrow.png" className="arrow"/></Link>
-<h1>시작하기</h1>
+<br /><br /><br />
+<Link to="/"> <Button variant="outlined">크기측정 시작하기</Button> </Link>
+    </TabPanel>
+
+
+ <TabPanel value={value} index={2}>
+     <img src="img/cont3.svg" className="ImgCont" width="80" />
+  <span className="MainText">
+부피 측정 탭 (설명은 아직...) 뭘..준비하죠?
+     </span>
+
+<br /><br /><br />
+<Link to="/"> <Button variant="outlined">부피측정 시작하기</Button> </Link>
 
     </TabPanel>
+
     </Box>
       </div>
   );

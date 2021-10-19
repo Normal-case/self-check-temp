@@ -1,42 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Modal from '@material-ui/core/Modal';
+import { Button } from '@mui/material';
 
 const page3 = () => {
   return (
     <div className="pageWrap arrowWrap">
      <Link to="/page2" className="BackIcon"><ArrowBackIcon fontSize="large" /></Link>
-      <img src="img/exclamation_mark.png" width="100px" />
-      <h2>셀프 체크 설명서</h2>
+    <img src="img/check1.png" className="car" />
+      <h2>업로드 전 체크해주세요</h2>
 
-<img src="img/cont.jpeg" style={{margin:'12px'}} />
+ <ul> 
 
-<h3>금지 물품은 <br /> <span className="red"> 빨간색 </span> 으로 표시됩니다.</h3>
-<p>가장 많이 적발되는 물품은 화장품(86.3%), 생수(5%)에요.</p>
+ <li> ➤ 짐 중에서 <span className="textImportant">의류, 수건을 모두 제외</span>해주세요.  <br /> 의류는 반입금지 물품에 포함되지 않아요.</li> <br /> 
+ <li> ➤ 모든 물품들은 최대한 서로 <span className="textImportant">겹치지 않도록</span> <br /> 늘어놓아주세요. </li> <br /> 
+ <li> ➤ 물품이 잘리거나 겹치지 않았는지 확인했다면,  <br /> <span className="textImportant">가급적이면 위에서 아래로 촬영</span>한 뒤  <br /> 결과를 확인해주세요.</li>
 
+ {/* <li> ➤ <span className="textImportant"><b> 무늬가 없는 배경</b></span> 에서 촬영해주세요.</li>
+ <li> ➤ <span className="textImportant"><b> 물품 전체</b></span>가 나오도록 촬영해주세요.</li>
+ <li> ➤ <span className="textImportant"><b> 물품이 겹치지 않게</b></span> 촬영해주세요.</li> */}
+ 
+ </ul>
+<Link to="/page4"> <Button variant="outlined">다음</Button> </Link>
 <br />
-<br />
-
-<img src="img/cont.jpeg" style={{margin:'12px'}} />
-<h3>기내, 또는 위탁 가능 물품은 <br /> <span className="green">초록색</span>으로 표시됩니다.</h3>
-<p>가장 많이 적발되는 물품은 화장품(86.3%), 생수(5%)에요.</p>
-
-<br />
-<br />
-
-<img src="img/cont.jpeg" style={{margin:'12px'}} />
-<h3>크기 또는 용량 제한 물품은 <br /> <span className="yellow">노란색</span>으로 표시됩니다.</h3>
-<p>가장 많이 적발되는 물품은 화장품(86.3%), 생수(5%)에요.</p>
-
-<br />
-<br />
-
-<footer>
-<Link to="/page3"><img src="img/q.png" width="60px" /></Link>
-<Link to="/page4"> <img src="img/arrow.png" className="frontarrow"/></Link>
-</footer>
-
 <br />
     </div>
   );
