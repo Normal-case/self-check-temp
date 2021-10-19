@@ -76,6 +76,7 @@ const Page4 = () => {
   // 셀프체크 버튼을 눌렀을 때 서버로 압축된 파일을 전송하는 함수
   const submitImage = () => {
     const formData = new FormData()
+    console.log(selectedFile)
     formData.append('img', selectedFile)
     setSpinner(true)
     API.imageSend(formData)
