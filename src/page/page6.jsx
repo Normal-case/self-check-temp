@@ -58,6 +58,7 @@ const Page6 = () => {
 
     const submitSizeAssume = () => {
         const formData = new FormData()
+        console.log(resultImg)
         formData.append('screen_img', resultImg)
         setSpinner(true)
         API.sizeSend(formData)
