@@ -144,7 +144,7 @@ const Page6 = () => {
         { isMobile ?
         <>
             { pageName === 'uploadPage' ?
-                <div>
+                <div className='sizeCameraWrap'>
                     { spinner ? 
                         <div className='modal'>
                             <div className='spinnerModal'>
