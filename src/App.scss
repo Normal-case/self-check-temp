@@ -262,26 +262,24 @@ max-width:400px !important;
 
 
 .sizeCheckBtn{
-  width:80% !important;
-min-width:250px !important;
-max-width:400px !important;
+  position: fixed;
+  bottom: 0;
+  width:100% !important;
   height:80px !important;
   background: #052170 !important;
   font-weight:900 !important;
   font-size:30px !important;
-  border-radius: 10px !important;
   cursor: pointer;
 }
 
 .sizeCheckBtn:disabled{
-  width:80% !important;
-min-width:250px !important;
-max-width:400px !important;
+  position: fixed;
+  bottom: 0;
+  width:100% !important;
   height:80px !important;
   background: #b4b4b4 !important;
   font-weight:900 !important;
   font-size:30px !important;
-  border-radius: 10px !important;
   cursor: default;
 }
 
