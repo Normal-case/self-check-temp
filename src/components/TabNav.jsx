@@ -75,7 +75,7 @@ export default function TabNav() {
      </span>
 
 <br /><br /><br />
-<Link to="/"> <Button variant="outlined">크기측정 시작하기</Button> </Link>
+<Link to="/page5"> <Button variant="outlined">크기측정 시작하기</Button> </Link>
     </TabPanel>
 
 
