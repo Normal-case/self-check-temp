@@ -131,12 +131,6 @@ const Page6 = () => {
         None: {display: 'none'},
         Hide: {width: '0%'},
         Video: {width:'100%'},
-        Button: {
-            width: '100px',
-            height: '30px',
-            borderRadius: '4px',
-            backgroundColor: '#FFA500'
-        }
     }
 
     return (
@@ -156,7 +150,7 @@ const Page6 = () => {
                     <h3>셀프 크기 측정</h3>
                     <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
                     <canvas ref={canvasRef} style={Styles.Video} />
-                    <button onClick={startOrStop} style={Styles.Button}>{timer ? '촬영하기' : '다시촬영'}</button>
+                    <button className='takePhotoBtn' onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
                     <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
                 </div> : <>{<img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={Styles.Video} />}</>
             }
