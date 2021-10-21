@@ -170,9 +170,9 @@ const Page4 = () => {
          : <div>
             <h3>셀프체크 결과입니다.</h3>
             <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
-            {labelResult ? Object.keys(labelResult).map((key) => (<div className='resultBtn' onClick={() => {openModal(key)}}><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</div>)) : null}
+            {/* {labelResult ? Object.keys(labelResult).map((key) => (<div className='resultBtn' onClick={() => {openModal(key)}}><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</div>)) : null}
             <br />
-            <br />
+            <br /> */}
 
             {labelResult ? Object.keys(labelResult).map((key) => <div className="TableWrap">
               <div className="TableRow">
