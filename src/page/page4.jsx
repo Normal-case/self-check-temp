@@ -13,6 +13,8 @@ import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
 import Modal from './modal'
+import ResultButton from "../components/ResultButton";
+import ResultTable from "../components/ResultTable";
 
 
 const Page4 = () => {
@@ -28,6 +30,15 @@ const Page4 = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [modalCase, setModalCase] = useState('')
   const labelNameChange = {
+    'cup': '컵',
+    'bottle': '병',
+    'knife': '칼',
+    'scissors': '가위',
+    'spray': '스프레이',
+    'lighter': '라이터',
+    'screwdriver': '드라이버'
+  }
+  const labelNameComponent = {
     'cup': '컵',
     'bottle': '병',
     'knife': '칼',
@@ -157,7 +168,12 @@ const Page4 = () => {
         </div>
          : <div>
             <h3>셀프체크 결과입니다.</h3>
-            <div className='resultImg'><img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' /></div>
+            <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
+            {labelResult ? Object.keys(labelResult).map((key) => (<div className='resultBtn' onClick={() => {openModal(key)}}><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</div>)) : null}
+            <br />
+            <br />
+
+            {labelResult ? Object.keys(labelResult).map((key) => <ResultTable clsName={key} openModal={openModal} />) : null}
            </div>
       }
 
