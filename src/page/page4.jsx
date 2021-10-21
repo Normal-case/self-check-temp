@@ -174,12 +174,12 @@ const Page4 = () => {
             {labelResult ? Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
               <b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.
-              <div className='ButtonWrap'>
-              <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>
-              </div>
+              
             </div>)) : null}
             </div>
-
+            <div className='ButtonWrap'>
+              <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>
+            </div>
            </div>
       }
 
