@@ -356,6 +356,8 @@ max-width:400px !important;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
+  border-bottom: 1px solid #333;
+  padding: 8px 4px;
 }
 .TableRow span{
   position:relative;
@@ -390,7 +392,6 @@ hr{
 .SelfWrap{
   width: 90%;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .SelfWrap img{
