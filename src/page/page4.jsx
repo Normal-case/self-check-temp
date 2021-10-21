@@ -173,7 +173,7 @@ const Page4 = () => {
             <br />
             <br />
 
-            {labelResult ? Object.keys(labelResult).map((key) => <ResultTable clsName={key} />) : null}
+            {/* {labelResult ? Object.keys(labelResult).map((key) => <ResultTable clsName={key} />) : null} */}
            </div>
       }
 
