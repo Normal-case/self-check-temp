@@ -34,7 +34,7 @@ const Page4 = () => {
     'scissors': '가위',
     'spray': '스프레이',
     'lighter': '라이터',
-    'driver': '드라이버'
+    'screwdriver': '드라이버'
   }
 
   useEffect(() => {}, [spinner])
@@ -48,7 +48,8 @@ const Page4 = () => {
 
     try {
       const compressedFile = await imageCompression(targetImage, options);
-      setSelectedFile(compressedFile)
+      // const compressedFile = targetImage;
+      setSelectedFile(targetImage)
       handleChangeFile(compressedFile)
     }
     catch (error) {
@@ -157,10 +158,7 @@ const Page4 = () => {
         </div>
          : <div>
             <h3>셀프체크 결과입니다.</h3>
-            <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' />
-            <div>
-              {labelResult ? Object.keys(labelResult).map((key) => (<div className='resultBtn' onClick={() => {openModal(key)}}><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</div>)) : null}
-            </div>
+            <div className='resultImg'><img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' /></div>
            </div>
       }
 
