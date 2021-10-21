@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@mui/material';
 
-const ResultTable=(clsName, openModal)=> {
+const ResultTable=()=> {
     return (
         <div className="TableWrap">
         <div className="TableRow">

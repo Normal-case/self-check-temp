@@ -173,7 +173,24 @@ const Page4 = () => {
             <br />
             <br />
 
-            {/* {labelResult ? Object.keys(labelResult).map((key) => <ResultTable clsName={key} />) : null} */}
+            {labelResult ? Object.keys(labelResult).map((key) => <div className="TableWrap">
+              <div className="TableRow">
+              <span> <b>{key}</b>이(가) 발견되었습니다.</span> 
+              <Button variant="outlined" onClick={openModal(key)} style={{border:"1px solid #333", color:"#333"}}> 
+                반입규정 확인
+              </Button>
+              </div>
+              <hr />
+              <div>
+                <Button variant='outlined' style={{border:'1px solid #333', color:'#333'}}>
+                  다시하기
+                </Button>
+
+                <Button variant='outlined' style={{border:'1px solid #333', color:'#333'}}>
+                  처음으로
+                </Button>
+              </div>
+              </div>) : null}
            </div>
       }
 
