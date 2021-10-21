@@ -173,8 +173,10 @@ const Page4 = () => {
             <div className='TableWrap'>
             {labelResult ? Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
-              <b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.
-              
+              <span><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</span>
+              <Button variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
+                반입규정 확인
+              </Button>
             </div>)) : null}
             </div>
             <div className='ButtonWrap'>
