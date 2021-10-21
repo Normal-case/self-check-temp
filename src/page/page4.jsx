@@ -177,8 +177,9 @@ const Page4 = () => {
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
                 반입규정 확인
               </Button>
-              <hr />
+            
             </div>)) : null}
+            <hr />
             </div>
             <div className='ButtonWrap'>
               <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>

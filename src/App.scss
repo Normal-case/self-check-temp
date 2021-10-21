@@ -390,7 +390,13 @@ hr{
 .SelfWrap{
   width: 90%;
   margin: 0 auto;
+  overflow: hidden;
 }
+
+.SelfWrap img{
+  width: 100%;
+}
+
 
 @media all and (min-width: 320px) and (max-width: 699px) {
  
