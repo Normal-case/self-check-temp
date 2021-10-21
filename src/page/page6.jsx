@@ -12,6 +12,8 @@ const Page6 = () => {
     const [spinner, setSpinner] = useState(false)
     const [pageName, setPageName] = useState('uploadPage')
     const [resultResponse, setResultResponse] = useState(null)
+    const [scissors, setScissors] = useState(null)
+    const [driver, setDriver] = useState(null)
     const webRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -70,6 +72,9 @@ const Page6 = () => {
         console.log(resp)
         setSpinner(false)
         setPageName('resultPage')
+
+        setScissors(resp['data']['scissors'].reduce(function(a, b) {return a + b;}, 0))
+        setDriver(resp['data']['driver'].reduce(function(a, b) {return a + b;}, 0))
     }
 
     const resizeImage = async (targetImage) => {
@@ -78,7 +83,7 @@ const Page6 = () => {
         var realData = block[1].split(',')[1]
         var blob = b64ToFile(realData, cType)
         const options = {
-            maxWidthOrHeight: 1280
+            maxWidthOrHeight: 2400
         }
 
         try {
@@ -152,7 +157,24 @@ const Page6 = () => {
                     <canvas ref={canvasRef} style={Styles.Video} />
                     <button className='takePhotoBtn' onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
                     <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
-                </div> : <>{<img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={Styles.Video} />}</>
+                </div> :
+                <div style={{textAlign:'center'}}>
+                    <h3>크기 측정 결과</h3>
+                    <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
+                    { 
+                        // 아무것도 발견하지 못했을 경우
+                        driver === 0 && scissors === 0 ? <div>물체가 인식되지 않았습니다. 다시 시도해주세요</div> :
+                        
+                        // 가위만 발견되었을 경우
+                        driver === 0 && scissors !== 0 ? <div>측정된 가위 중 <span className='green'>{resultResponse['data']['scissors'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['scissors'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+
+                        // 드라이버만 발견되었을 경우
+                        driver !== 0 && scissors === 0 ? <div>측정된 드라이버 중 <span className='green'>{resultResponse['data']['driver'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['driver'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+
+                        // 드라이버와 가위 둘다 발견되었을 경우
+                        driver !== 0 && scissors !== 0 ? <div>측정된 가위 중 <span className='green'>{resultResponse['data']['scissors'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['scissors'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.<br />측정된 드라이버 중 <span className='green'>{resultResponse['data']['driver'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['driver'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> : null
+                    }
+                </div>
             }
         </>
         : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>

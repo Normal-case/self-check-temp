@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
 import imageCompression from 'browser-image-compression';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import API from '../api-server'
@@ -13,6 +14,8 @@ import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
 import Modal from './modal'
+import ResultButton from "../components/ResultButton";
+import ResultTable from "../components/ResultTable";
 
 
 
@@ -35,7 +38,16 @@ const Page4 = () => {
     'scissors': '가위',
     'spray': '스프레이',
     'lighter': '라이터',
-    'driver': '드라이버'
+    'screwdriver': '드라이버'
+  }
+  const labelNameComponent = {
+    'cup': '컵',
+    'bottle': '병',
+    'knife': '칼',
+    'scissors': '가위',
+    'spray': '스프레이',
+    'lighter': '라이터',
+    'screwdriver': '드라이버'
   }
 
   useEffect(() => {}, [spinner])
@@ -44,7 +56,7 @@ const Page4 = () => {
   // 사용자가 업로드한 이미지를 축소하는 함수
   const resizeImage = async (targetImage) => {
     const options = {
-      maxWidthOrHeight: 1280
+      maxWidthOrHeight: 2400
     }
 
     try {
@@ -156,11 +168,22 @@ const Page4 = () => {
             </div>
           </div> : null}
         </div>
-         : <div>
+         : <div className="SelfWrap">
             <h3>셀프체크 결과입니다.</h3>
-            <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' />
-            <div>
-              {labelResult ? Object.keys(labelResult).map((key) => (<div className='resultBtn' onClick={() => {openModal(key)}}><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</div>)) : null}
+            <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
+            <div className='TableWrap'>
+            {labelResult ? Object.keys(labelResult).map((key) => (
+            <div className='TableRow'>
+              <span><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</span>
+              <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
+                반입규정 확인
+              </Button>
+            
+            </div>)) : null}
+            <hr />
+            </div>
+            <div className='ButtonWrap'>
+              <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>
             </div>
            </div>
       }

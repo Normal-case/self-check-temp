@@ -356,6 +356,8 @@ max-width:400px !important;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
+  border-bottom: 1px solid #333;
+  padding: 8px 4px;
 }
 .TableRow span{
   position:relative;
@@ -382,6 +384,20 @@ padding:4px 8px;
 hr{
   border: 1px solid #ddd;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.SelfWrap{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.SelfWrap img{
+  width: 100%;
+}
+
 
 @media all and (min-width: 320px) and (max-width: 699px) {
  
