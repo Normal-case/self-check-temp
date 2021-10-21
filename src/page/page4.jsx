@@ -167,7 +167,7 @@ const Page4 = () => {
             </div>
           </div> : null}
         </div>
-         : <div>
+         : <div className="SelfWrap">
             <h3>셀프체크 결과입니다.</h3>
             <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
             <div className='TableWrap'>
@@ -177,6 +177,7 @@ const Page4 = () => {
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
                 반입규정 확인
               </Button>
+              <hr />
             </div>)) : null}
             </div>
             <div className='ButtonWrap'>
