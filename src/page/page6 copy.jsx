@@ -143,7 +143,7 @@ const Page6 = () => {
         { isMobile ?
         <>
             { pageName === 'uploadPage' ?
-                <div className='selfwrap'>
+                <div className='sizeCameraWrap'>
                     { spinner ? 
                         <div className='modal'>
                             <div className='spinnerModal'>
@@ -152,31 +152,11 @@ const Page6 = () => {
                             </div>
                         </div> : null
                     }
-                    <Box sx={{ flexGrow: 1 }} className="selfHeader">
-                    <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
-                        <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                        
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        셀프 크기 측정
-                        </Typography>
-                        <Button color="inherit" variant="outlined" onClick={() => startOrStop}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
-                        </Toolbar>
-                    </AppBar>
-                    </Box>
-                    <div className='canvasDisplay'>
-                        <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
-                        <canvas ref={canvasRef} style={Styles.Video} />
-                    </div>
-                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume} className="bottomButton">크기 체크 시작</Button></p>
-
+                    <h3>셀프 크기 측정</h3>
+                    <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+                    <canvas ref={canvasRef} style={Styles.Video} />
+                    <button className='takePhotoBtn' onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
+                    <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
                 </div> :
                 <div style={{textAlign:'center'}}>
                     <h3>크기 측정 결과</h3>
