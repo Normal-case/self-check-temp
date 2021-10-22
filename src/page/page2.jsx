@@ -35,7 +35,6 @@ const page2 = () => {
 <br />
 
 <footer>
-{/* <Link to="/page3"><img src="img/q.png" width="48px" /></Link> */}
 <Link to="/page3"> <Button variant="outlined">다음</Button> </Link>
 </footer>
 

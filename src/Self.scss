@@ -1,0 +1,265 @@
+
+// 셀프 체크와 관련된 CSS
+
+.pageWrap .plane{
+  width:124px;
+  margin: 0 auto;
+}
+
+.pageWrap .textImportant{
+  background: #F9FF85;
+}
+
+.pageWrap .arrow{
+  display:flex;
+  flex-direction:column;
+  width:80px;
+  margin: 24px auto 0;
+}
+
+.pageWrap .BackIcon{
+  position:absolute;
+ top:32px;
+ left:32px;
+  width:32px;
+}
+
+.pageWrap ul li{
+line-height:2;
+font-size:14px;
+padding:0;
+margin:0 auto;
+}
+
+.selfCheckDelayText{
+font-weight:700;
+}
+
+.downloadWrap{
+  width:200px;
+  height:200px;
+  border:4px dotted #ccc;
+  margin: 0 auto;
+  margin-bottom: 17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.downloadClearWrap{
+  border:8px solid #368BFF;
+  border-radius:20px;
+}
+
+.downloadWrap img{
+display:flex;
+align-self:center;
+
+}
+
+.pageWrap .MuiTabs-flexContainer button{
+  width:200px;
+  height:50px;
+  color:#333 !important;
+  font-size:20px;
+  margin: 24px auto 16px;
+  padding: 0;
+}
+
+.photoCheck{
+ position:relative;
+ top:4px;
+}
+
+.beforeBtn{
+  background-color:#368BFF;
+}
+
+.afterBtn{
+  background-color:#ccc;
+}
+
+.checkStartBtn{
+  width:240px !important;
+  height:50px !important;
+  background: #368bff !important;
+  font-weight:900;
+  font-size:24px !important;
+  border-radius:10px !important;
+  margin: 20px auto !important;
+  cursor: pointer;
+  border: 1px solid;
+}
+
+#inputFileLabel {
+  padding: 10px 50px;
+  background-color: #368BFF;
+  border-color: #368BFF;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 300px;
+  font-size: 22px;
+}
+
+.selfCheckBtn{
+  width:80% !important;
+  min-width:250px !important;
+  max-width:400px !important;
+  height:80px !important;
+  background: #368BFF !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  border-radius: 10px !important;
+  cursor: pointer;
+  color:#fff;
+}
+
+.selfCheckBtn:disabled{
+  width:80% !important;
+  min-width:250px !important;
+  max-width:400px !important;
+  height:80px !important;
+  background: #b4b4b4 !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  border-radius: 10px !important;
+  cursor: default;
+}
+
+
+.sizeCheckBtn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width:100% !important;
+  height:80px !important;
+  background: #052170 !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  cursor: pointer;
+}
+
+.sizeCheckBtn:disabled{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width:100% !important;
+  height:80px !important;
+  background: #b4b4b4 !important;
+  font-weight:900 !important;
+  font-size:30px !important;
+  cursor: default;
+}
+
+.caution_ul {
+  margin: 30px auto;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7)
+}
+
+.spinnerModal {
+  position: relative;
+  margin: 300px auto;
+}
+
+.spinnerModal span {
+  font-size: 28px;
+  color: #28E7FF;
+}
+
+.resultBtn {
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  border: 4px solid #368BFF;
+  border-radius: 50px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.resultBtn:hover {
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #C8FFFF;
+  border: 4px solid #368BFF;
+  border-radius: 50px;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.sizeCameraWrap {
+  text-align:center;
+}
+
+.takePhotoBtn {
+  width: 40%;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #ffa500;
+}
+
+.TableWrap{
+  width:90%;
+  margin: 0 auto;
+  font-size:14px;
+}
+
+.TableRow{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  border-bottom: 1px solid #333;
+  padding: 8px 4px;
+}
+.TableRow span{
+  position:relative;
+  top:8px;
+}
+
+.TableRow button{
+padding:4px 8px;
+}
+
+.ButtonWrap{
+ width:90%;
+ margin: 0 auto;
+ display:flex;
+ flex-direction:row;
+ align-items:center;
+ justify-content:center;
+}
+
+.ButtonWrap Button{
+  border-radius:0;
+}
+
+hr{
+  border: 1px solid #ddd;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.SelfWrap{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.SelfWrap img{
+  width: 100%;
+}

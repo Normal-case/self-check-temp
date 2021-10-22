@@ -1,4 +1,8 @@
 import "./App.scss";
+import "./App.scss";
+import "./Self.scss";
+import "./Size.scss";
+import "./Volume.scss";
 import Modal from "./Modal";
 import React, { useState } from "react";
 // import CarryOn from "./components/carryon";
