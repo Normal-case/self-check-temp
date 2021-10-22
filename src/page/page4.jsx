@@ -165,10 +165,10 @@ const Page4 = () => {
           </div> : null}
         </div>
          : <div className="SelfWrap">
-            <h3>셀프체크 결과입니다.</h3>
+            <h2>➤ 셀프체크 결과입니다.</h2>
             <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
             <div className='TableWrap'>
-            {labelResult ? <div>발견된 물품{Object.keys(labelResult).map((key) => (
+            {labelResult ? <div><h3>발견된 물품</h3>{Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
               <span><b>{key}</b> <b>{labelResult[key]}개</b></span>
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
