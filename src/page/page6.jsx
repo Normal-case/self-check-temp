@@ -183,7 +183,7 @@ const Page6 = () => {
                         <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
                         <canvas ref={canvasRef} style={Styles.Video} />
                     </div>
-                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn">크기 체크 시작</Button></p>
+                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
 
                 </div> :
                 <div style={{textAlign:'center'}}>
