@@ -171,6 +171,10 @@ const Page4 = () => {
               </Button>
             
             </div>)) : null}
+
+            {resultResponse['data']['volumn'] > 100 
+            ? <div><span className='red'>100ml가 넘는 물건이 발견되었습니다.</span><br />액체류 물건의 경우<br />100ml가 넘으면 기내 반입이 불가능하며<br />500ml가 넘으면 기내와 수하물 둘다 불가합니다.<br /><span className='green'>물건의 용량을 꼭 확인해주세요!</span></div> : null
+            }
     
             </div>
             <div className='ButtonWrap'>
