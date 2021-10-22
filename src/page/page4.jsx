@@ -170,7 +170,7 @@ const Page4 = () => {
             <div className='TableWrap'>
             {labelResult ? <div>발견된 물품{Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
-              <span><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</span>
+              <span><b>{key}</b> <b>{labelResult[key]}개</b></span>
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
                 반입규정 확인
               </Button>
