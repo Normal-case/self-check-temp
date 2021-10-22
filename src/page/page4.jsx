@@ -115,7 +115,7 @@ const Page4 = () => {
   }
 
   const retry = () => {
-    setUploaded(false)
+    window.location.reload()
   }
 
   const chooseModal = () => {
