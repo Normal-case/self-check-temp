@@ -5,6 +5,14 @@ import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
 import Loader from "react-loader-spinner"
 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+
 const Page6 = () => {
 
     const [timer, setTimer] = useState(undefined)
