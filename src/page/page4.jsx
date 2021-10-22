@@ -51,7 +51,7 @@ const Page4 = () => {
     }
 
     try {
-      const compressedFile = await imageCompression(targetImage);
+      const compressedFile = await imageCompression(targetImage, options);
       setSelectedFile(compressedFile)
       handleChangeFile(compressedFile)
     }
@@ -131,7 +131,7 @@ const Page4 = () => {
       case '드라이버':
         return <DriverDesc />
       default:
-        return <VolumnDesc />
+        return
     }
   }
 
@@ -172,17 +172,10 @@ const Page4 = () => {
               </Button>
             
             </div>)) : null}
-
-            {resultResponse['data']['volumn'] > 100 
-            ? <div className='TableRow'>
-                <span className='red'><b>100ml가 넘는 물건이 발견되었습니다.</b></span>
-                <Button onClick={() => {openModal('volumn')}} variant='outlined' style={{border: '1px solid #333', color:'#333'}}>반입규정 확인</Button>
-              </div> : null
-            }
     
             </div>
             <div className='ButtonWrap'>
-              <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>
+              <Link to='/page4'><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button>&nbsp;&nbsp;</Link><Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button></Link>
             </div>
            </div>
       }
