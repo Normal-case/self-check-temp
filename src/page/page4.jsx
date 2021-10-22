@@ -168,14 +168,14 @@ const Page4 = () => {
             <h3>셀프체크 결과입니다.</h3>
             <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
             <div className='TableWrap'>
-            {labelResult ? Object.keys(labelResult).map((key) => (
+            {labelResult ? <div>발견된 물품{Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
               <span><b>{key}</b>이(가) <b>{labelResult[key]}개</b> 발견되었습니다.</span>
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
                 반입규정 확인
               </Button>
             
-            </div>)) : null}
+            </div>))}</div> : null}
     
             </div>
             <div className='ButtonWrap'>
