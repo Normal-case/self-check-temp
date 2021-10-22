@@ -175,7 +175,7 @@ const Page4 = () => {
     
             </div>
             <div className='ButtonWrap'>
-              <Button onClick={() => {location.replace(location.href)}} varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button></Link>
+              <Button onClick={() => setUploaded(true)} varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button></Link>
             </div>
            </div>
       }
