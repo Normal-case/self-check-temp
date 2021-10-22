@@ -133,30 +133,6 @@ align-self:center;
 }
 
 
-.sizeCheckBtn{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width:100% !important;
-  height:80px !important;
-  background: #052170 !important;
-  font-weight:900 !important;
-  font-size:30px !important;
-  cursor: pointer;
-}
-
-.sizeCheckBtn:disabled{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width:100% !important;
-  height:80px !important;
-  background: #b4b4b4 !important;
-  font-weight:900 !important;
-  font-size:30px !important;
-  cursor: default;
-}
-
 .caution_ul {
   margin: 30px auto;
 }
@@ -172,7 +148,7 @@ align-self:center;
 
 .spinnerModal {
   position: relative;
-  margin: 300px auto;
+  margin: 30vh auto;
 }
 
 .spinnerModal span {

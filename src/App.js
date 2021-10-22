@@ -28,7 +28,6 @@ function App() {
         <Route path="/page5" component={page5} exact={true} />
         <Route path="/page6" component={page6} exact={true} />
       </SlideRoutes>
-
     </>
   );
 }

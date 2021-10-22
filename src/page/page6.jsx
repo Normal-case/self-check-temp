@@ -5,6 +5,14 @@ import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
 import Loader from "react-loader-spinner"
 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+
 const Page6 = () => {
 
     const [timer, setTimer] = useState(undefined)
@@ -135,7 +143,7 @@ const Page6 = () => {
     const Styles = {
         None: {display: 'none'},
         Hide: {width: '0%'},
-        Video: {width:'100%'},
+        Video: {width:'100%', margin:'0', padding:'0'},
     }
 
     return (
@@ -143,7 +151,8 @@ const Page6 = () => {
         { isMobile ?
         <>
             { pageName === 'uploadPage' ?
-                <div className='sizeCameraWrap'>
+            <div className='sizeCameraWrap'>
+                <div className='selfwrap'>
                     { spinner ? 
                         <div className='modal'>
                             <div className='spinnerModal'>
@@ -152,12 +161,32 @@ const Page6 = () => {
                             </div>
                         </div> : null
                     }
-                    <h3>셀프 크기 측정</h3>
-                    <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
-                    <canvas ref={canvasRef} style={Styles.Video} />
-                    <button className='takePhotoBtn' onClick={startOrStop}>{timer ? '촬영하기' : '다시촬영'}</button>
-                    <button className="sizeCheckBtn" onClick={submitSizeAssume} disabled={timer}>크기 체크 시작</button>
-                </div> :
+                    <Box sx={{ flexGrow: 1 }} className="selfHeader">
+                    <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
+                        <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                        
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        셀프 크기 측정
+                        </Typography>
+                        <Button color="inherit" variant="outlined" onClick={() => startOrStop()}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
+                        </Toolbar>
+                    </AppBar>
+                    </Box>
+                    <div className='canvasDisplay'>
+                        <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+                        <canvas ref={canvasRef} style={Styles.Video} />
+                    </div>
+                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
+
+                </div></div> :
                 <div style={{textAlign:'center'}}>
                     <h3>크기 측정 결과</h3>
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
