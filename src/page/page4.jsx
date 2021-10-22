@@ -179,7 +179,7 @@ const Page4 = () => {
     
             </div>
             <div className='ButtonWrap'>
-              <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button></Link>
+              <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
             </div>
            </div>
       }
