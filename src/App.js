@@ -15,8 +15,6 @@ import page4 from "./page/page4.jsx"
 import page5 from "./page/page5.jsx"
 import page6 from "./page/page6.jsx"
 
-import page6_2 from "./page/page6_2.jsx"
-
 function App() {
   const location = useLocation()
 
@@ -30,7 +28,6 @@ function App() {
       </SlideRoutes>
         <Route path="/page5" component={page5} exact={true} />
         <Route path="/page6" component={page6} exact={true} />
-        <Route path="/page6_2" component={page6_2} exact={true} />
     </>
   );
 }
