@@ -14,8 +14,6 @@ import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
 import Modal from './modal'
-import ResultButton from "../components/ResultButton";
-import ResultTable from "../components/ResultTable";
 
 
 
@@ -38,16 +36,8 @@ const Page4 = () => {
     'scissors': '가위',
     'spray': '스프레이',
     'lighter': '라이터',
-    'screwdriver': '드라이버'
-  }
-  const labelNameComponent = {
-    'cup': '컵',
-    'bottle': '병',
-    'knife': '칼',
-    'scissors': '가위',
-    'spray': '스프레이',
-    'lighter': '라이터',
-    'screwdriver': '드라이버'
+    'screwdriver': '드라이버',
+    'food': '음식물'
   }
 
   useEffect(() => {}, [spinner])
@@ -60,7 +50,7 @@ const Page4 = () => {
     }
 
     try {
-      const compressedFile = await imageCompression(targetImage, options);
+      const compressedFile = await imageCompression(targetImage);
       setSelectedFile(compressedFile)
       handleChangeFile(compressedFile)
     }
@@ -99,6 +89,7 @@ const Page4 = () => {
 
   const getResponse = (resp) => {
     setResultResponse(resp)
+    console.log(resp)
     setSpinner(false)
     setPageName('resultPage')
     const label_result = []
@@ -180,7 +171,7 @@ const Page4 = () => {
               </Button>
             
             </div>)) : null}
-            <hr />
+    
             </div>
             <div className='ButtonWrap'>
               <Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>다시하기</Button><Button varient='outlined' style={{border:'1px solid #333', color:'#333'}}>처음으로</Button>

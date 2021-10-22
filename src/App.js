@@ -4,18 +4,16 @@ import "./Size.scss";
 import "./Volume.scss";
 import React, { useState } from "react";
 
+
 import { useLocation, Route } from "react-router-dom"
 import SlideRoutes from 'react-slide-routes'
-import { createBrowserHistory } from 'history'
 import firstPage from './page/firstPage.jsx'
 
-import page1 from "./page/firstPage.jsx"
 import page2 from "./page/page2.jsx"
 import page3 from "./page/page3.jsx"
 import page4 from "./page/page4.jsx"
 import page5 from "./page/page5.jsx"
 import page6 from "./page/page6.jsx"
-import TabNav from "./components/TabNav.jsx"
 
 import page6_2 from "./page/page6_2.jsx"
 

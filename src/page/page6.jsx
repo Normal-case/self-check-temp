@@ -83,7 +83,7 @@ const Page6 = () => {
         var realData = block[1].split(',')[1]
         var blob = b64ToFile(realData, cType)
         const options = {
-            maxWidthOrHeight: 2400
+            maxWidthOrHeight: 1280
         }
 
         try {
