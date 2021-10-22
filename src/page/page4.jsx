@@ -13,6 +13,7 @@ import KnifeDesc from './modal/knife'
 import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
+import VolumnDesc from './modal/volumn'
 import Modal from './modal'
 
 
@@ -130,7 +131,7 @@ const Page4 = () => {
       case '드라이버':
         return <DriverDesc />
       default:
-        return
+        return <VolumnDesc />
     }
   }
 
@@ -173,7 +174,10 @@ const Page4 = () => {
             </div>)) : null}
 
             {resultResponse['data']['volumn'] > 100 
-            ? <div><span className='red'>100ml가 넘는 물건이 발견되었습니다.</span><br />액체류 물건의 경우<br />100ml가 넘으면 기내 반입이 불가능하며<br />500ml가 넘으면 기내와 수하물 둘다 불가합니다.<br /><span className='green'>물건의 용량을 꼭 확인해주세요!</span></div> : null
+            ? <div className='TableRow'>
+                <span className='red'><b>100ml가 넘는 물건이 발견되었습니다.</b></span>
+                <Button onClick={() => {openModal('volumn')}} variant='outlined' style={{border: '1px solid #333', color:'#333'}}>반입규정 확인</Button>
+              </div> : null
             }
     
             </div>
