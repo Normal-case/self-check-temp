@@ -82,7 +82,11 @@ export default function TabNav() {
  <TabPanel value={value} index={2}>
      <img src="img/cont3.svg" className="ImgCont" width="80" />
   <span className="MainText">
-부피 측정 탭 (설명은 아직...) 뭘..준비하죠?
+항공기에 물을 가지고 들어가면 <br />
+안된다는 사실, 아셨나요?<br />
+승객 여행의 안전을 위해 식별되지 않은 <br /> 
+<span className="textImportant">일정량 이상의 액체는 기내 반입이 금지</span>됩니다.<br />
+기내 반입 전, 병의 부피를 측정해봅시다.
      </span>
 
 <br /><br /><br />
