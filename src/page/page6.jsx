@@ -143,7 +143,7 @@ const Page6 = () => {
     const Styles = {
         None: {display: 'none'},
         Hide: {width: '0%'},
-        Video: {width:'100%', height:'100vh', margin:'0', padding:'0'},
+        Video: {width:'100%', margin:'0', padding:'0'},
     }
 
     return (
