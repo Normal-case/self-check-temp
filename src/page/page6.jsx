@@ -175,7 +175,7 @@ const Page6 = () => {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         셀프 크기 측정
                         </Typography>
-                        <Button color="inherit" variant="outlined" onClick={() => startOrStop}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
+                        <Button color="inherit" variant="outlined" onClick={() => startOrStop()}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
                         </Toolbar>
                     </AppBar>
                     </Box>
@@ -183,7 +183,7 @@ const Page6 = () => {
                         <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
                         <canvas ref={canvasRef} style={Styles.Video} />
                     </div>
-                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume} className="bottomButton">크기 체크 시작</Button></p>
+                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn">크기 체크 시작</Button></p>
 
                 </div> :
                 <div style={{textAlign:'center'}}>
