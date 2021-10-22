@@ -165,7 +165,7 @@ const Page4 = () => {
           </div> : null}
         </div>
          : <div className="SelfWrap">
-            <h2>➤ 셀프체크 결과입니다.</h2>
+            <h3>➤ 셀프체크 결과입니다.</h3>
             <img src={'data:image/gif;base64,' + resultResponse['data']['after_detection']} alt='' />
             <div className='TableWrap'>
             {labelResult ? <div><h3>발견된 물품</h3>{Object.keys(labelResult).map((key) => (
