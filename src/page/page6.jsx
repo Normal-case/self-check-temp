@@ -151,6 +151,7 @@ const Page6 = () => {
         { isMobile ?
         <>
             { pageName === 'uploadPage' ?
+            <div className='sizeCameraWrap'>
                 <div className='selfwrap'>
                     { spinner ? 
                         <div className='modal'>
@@ -185,7 +186,7 @@ const Page6 = () => {
                     </div>
                     <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
 
-                </div> :
+                </div></div> :
                 <div style={{textAlign:'center'}}>
                     <h3>크기 측정 결과</h3>
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
