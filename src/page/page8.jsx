@@ -4,12 +4,13 @@ import Webcam from 'react-webcam'
 import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
 import Loader from "react-loader-spinner"
+import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
@@ -102,6 +103,10 @@ const Page8 = () => {
         }
     }
 
+    const retry = () => {
+        window.location.reload()
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -192,16 +197,107 @@ const Page8 = () => {
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
                     {
                         // 아무것도 발견하지 못했을 경우
-                        bottle === 0 && spray === 0 ? <div>물체가 인식되지 않았습니다. 다시 시도해주세요</div> :
+                        bottle === 0 && spray === 0 
+                        ? <div>
+                            물체가 인식되지 않았습니다. 다시 시도해주세요
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>                             
+                          </div> :
                         
                         // 스프레이만 발견되었을 경우
-                        bottle === 0 && spray !== 0 ? <div>측정된 스프레이 중 <span className='green'>{resultResponse['data']['spray'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['spray'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['spray'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+                        bottle === 0 && spray !== 0 
+                        ? <div>
+                            측정된 스프레이
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>기내, 위탁 가능</th>
+                                        <th>위탁만 가능</th>
+                                        <th>기내, 위탁 불가능</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{resultResponse['data']['spray'][0]}개</td>
+                                        <td>{resultResponse['data']['spray'][1]}개</td>
+                                        <td>{resultResponse['data']['spray'][2]}개</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>  
+                          </div> :
 
                         // 병만 발견되었을 경우
-                        bottle !== 0 && spray === 0 ? <div>측정된 병 중 <span className='green'>{resultResponse['data']['bottle'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['bottle'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['bottle'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+                        bottle !== 0 && spray === 0 
+                        ? <div>
+                            측정된 병
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>기내, 위탁 가능</th>
+                                        <th>위탁만 가능</th>
+                                        <th>기내, 위탁 불가능</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{resultResponse['data']['bottle'][0]}개</td>
+                                        <td>{resultResponse['data']['bottle'][1]}개</td>
+                                        <td>{resultResponse['data']['bottle'][2]}개</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>
+                          </div> :
 
-                        // 드라이버와 가위 둘다 발견되었을 경우
-                        bottle !== 0 && spray !== 0 ? <div>측정된 스프레이 중 <span className='green'>{resultResponse['data']['spray'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['spray'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['spray'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.<br />측정된 병 중 <span className='green'>{resultResponse['data']['bottle'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['bottle'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['bottle'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> : null
+                        // 병과 스프레이 둘다 발견되었을 경우
+                        bottle !== 0 && spray !== 0 
+                        ? <div>
+                            측정된 스프레이
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>기내, 위탁 가능</th>
+                                        <th>위탁만 가능</th>
+                                        <th>기내, 위탁 불가능</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{resultResponse['data']['spray'][0]}개</td>
+                                        <td>{resultResponse['data']['spray'][1]}개</td>
+                                        <td>{resultResponse['data']['spray'][2]}개</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <br />
+                            측정된 병
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>기내, 위탁 가능</th>
+                                        <th>위탁만 가능</th>
+                                        <th>기내, 위탁 불가능</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{resultResponse['data']['bottle'][0]}개</td>
+                                        <td>{resultResponse['data']['bottle'][1]}개</td>
+                                        <td>{resultResponse['data']['bottle'][2]}개</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>
+                          </div> : null
                     }
                 </div>
             }
