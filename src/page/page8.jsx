@@ -70,7 +70,7 @@ const Page8 = () => {
         const formData = new FormData()
         formData.append('screen_img', resultImg)
         setSpinner(true)
-        API.sizeSend(formData)
+        API.volumnSend(formData)
             .then(resp => getResponse(resp))
             .catch(error => console.log(error))
     }
