@@ -20,8 +20,8 @@ const Page8 = () => {
     const [spinner, setSpinner] = useState(false)
     const [pageName, setPageName] = useState('uploadPage')
     const [resultResponse, setResultResponse] = useState(null)
-    const [scissors, setScissors] = useState(null)
-    const [driver, setDriver] = useState(null)
+    const [bottle, setBottle] = useState(null)
+    const [spray, setSpray] = useState(null)
     const webRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -80,6 +80,9 @@ const Page8 = () => {
         console.log(resp)
         setSpinner(false)
         setPageName('resultPage')
+
+        setBottle(resp['data']['bottle'].reduce(function(a, b) {return a + b;}, 0))
+        setSpray(resp['data']['spray'].reduce(function(a, b) {return a + b;}, 0))
     }
 
     const resizeImage = async (targetImage) => {
@@ -187,6 +190,19 @@ const Page8 = () => {
                 <div style={{textAlign:'center'}}>
                     <h3>부피 측정 결과</h3>
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
+                    {
+                        // 아무것도 발견하지 못했을 경우
+                        bottle === 0 && spray === 0 ? <div>물체가 인식되지 않았습니다. 다시 시도해주세요</div> :
+                        
+                        // 스프레이만 발견되었을 경우
+                        bottle === 0 && spray !== 0 ? <div>측정된 스프레이 중 <span className='green'>{resultResponse['data']['spray'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['spray'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['spray'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+
+                        // 병만 발견되었을 경우
+                        bottle !== 0 && spray === 0 ? <div>측정된 병 중 <span className='green'>{resultResponse['data']['bottle'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['bottle'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['bottle'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+
+                        // 드라이버와 가위 둘다 발견되었을 경우
+                        bottle !== 0 && spray !== 0 ? <div>측정된 스프레이 중 <span className='green'>{resultResponse['data']['spray'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['spray'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['spray'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.<br />측정된 병 중 <span className='green'>{resultResponse['data']['bottle'][0]}개는 기내, 위탁반입 가능</span><br /><span className='yellow'>{resultResponse['data']['bottle'][1]}개는 위탁만 가능</span><br /><span className='red'>{resultResponse['data']['bottle'][2]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> : null
+                    }
                 </div>
             }
         </>
