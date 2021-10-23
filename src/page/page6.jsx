@@ -102,6 +102,10 @@ const Page6 = () => {
         }
     }
 
+    const retry = () => {
+        window.location.reload()
+    }
+
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -192,7 +196,13 @@ const Page6 = () => {
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
                     { 
                         // 아무것도 발견하지 못했을 경우
-                        driver === 0 && scissors === 0 ? <div>물체가 인식되지 않았습니다. 다시 시도해주세요</div> :
+                        driver === 0 && scissors === 0 
+                        ? <div>
+                            물체가 인식되지 않았습니다. 다시 시도해주세요
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>                            
+                          </div> :
                         
                         // 가위만 발견되었을 경우
                         driver === 0 && scissors !== 0 
@@ -212,6 +222,9 @@ const Page6 = () => {
                                     </tr>
                                 </tbody>
                             </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>                            
                           </div> :
 
                         // 드라이버만 발견되었을 경우
@@ -232,6 +245,9 @@ const Page6 = () => {
                                     </tr>
                                 </tbody>
                             </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>                            
                           </div> :
 
                         // 드라이버와 가위 둘다 발견되었을 경우
@@ -269,6 +285,9 @@ const Page6 = () => {
                                     </tr>
                                 </tbody>
                             </table>
+                            <div className='ButtonWrap'>
+                                <Button onClick={() => {retry()}} varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>다시하기</Button>&nbsp;&nbsp;<Link to='/'><Button varient='outlined' style={{border:'1px solid #333', color:'#333', borderRadius:'5px'}}>처음으로</Button></Link>
+                            </div>                            
                           </div> : null
                     }
                 </div>
