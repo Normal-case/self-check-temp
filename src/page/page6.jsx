@@ -4,6 +4,8 @@ import Webcam from 'react-webcam'
 import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
 import Loader from "react-loader-spinner"
+import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
