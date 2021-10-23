@@ -195,7 +195,24 @@ const Page6 = () => {
                         driver === 0 && scissors === 0 ? <div>물체가 인식되지 않았습니다. 다시 시도해주세요</div> :
                         
                         // 가위만 발견되었을 경우
-                        driver === 0 && scissors !== 0 ? <div>측정된 가위 중 <span className='green'>{resultResponse['data']['scissors'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['scissors'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
+                        driver === 0 && scissors !== 0 
+                        ? <div>
+                            측정된 가위
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>기내반입 가능</th>
+                                        <th>기내반입 불가</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{resultResponse['data']['scissors'][0]}</td>
+                                        <td>{resultResponse['data']['scissors'][1]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                          </div> :
 
                         // 드라이버만 발견되었을 경우
                         driver !== 0 && scissors === 0 ? <div>측정된 드라이버 중 <span className='green'>{resultResponse['data']['driver'][0]}개는 기내반입 가능</span><br /><span className='red'>{resultResponse['data']['driver'][1]}개는 불가능</span>하다고 측정되었습니다.<br />자세한 사항은 <span className='underline'>규정</span>을 확인해주세요.</div> :
