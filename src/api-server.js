@@ -8,4 +8,8 @@ export default class API {
     static sizeSend(body){
         return axios.post("https://self-check-api.shop/api/size/", body)
     }
+
+    static volumnSend(body){
+        return axios.post("https://self-check-api.shop/api/volumn/", body)
+    }
 }

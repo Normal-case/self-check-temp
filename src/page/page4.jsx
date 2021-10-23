@@ -13,7 +13,6 @@ import KnifeDesc from './modal/knife'
 import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
-import VolumnDesc from './modal/volumn'
 import Modal from './modal'
 
 

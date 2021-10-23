@@ -90,7 +90,7 @@ export default function TabNav() {
      </span>
 
 <br /><br /><br />
-<Link to="/"> <Button variant="outlined">부피측정 시작하기</Button> </Link>
+<Link to="/page7"> <Button variant="outlined">부피측정 시작하기</Button> </Link>
 
     </TabPanel>
 

@@ -1,0 +1,200 @@
+import React, { useState, useRef, useEffect } from "react";
+import API from '../api-server'
+import Webcam from 'react-webcam'
+import { isMobile } from 'react-device-detect'
+import imageCompression from "browser-image-compression"
+import Loader from "react-loader-spinner"
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+
+const Page8 = () => {
+
+    const [timer, setTimer] = useState(undefined)
+    const [resultImg, setResultImg] = useState(null)
+    const [spinner, setSpinner] = useState(false)
+    const [pageName, setPageName] = useState('uploadPage')
+    const [resultResponse, setResultResponse] = useState(null)
+    const [scissors, setScissors] = useState(null)
+    const [driver, setDriver] = useState(null)
+    const webRef = useRef(null)
+    const canvasRef = useRef(null)
+
+    const videoContraints = {
+        facingMode: 'environment'
+    }
+
+    useEffect(() => {
+        if(isMobile){
+            startOrStop()
+        }
+    }, [])
+
+    const startOrStop = () => {
+        if(!timer) {
+            const t = setInterval(() => drawToCanvas(), 0.1)
+            setTimer(t)
+        } else {
+            resizeImage(canvasRef.current.toDataURL())
+            clearInterval(timer)
+            setTimer(undefined)
+        }
+    }
+
+    const b64ToFile = (realData, contentType='', sliceSize=512) => {
+        const byteCharacters = atob(realData)
+        const byteArrays = []
+
+        for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
+            const slice = byteCharacters.slice(offset, offset + sliceSize)
+
+            const byteNumbers = new Array(slice.length)
+            for(let i=0;i<slice.length;i++){
+                byteNumbers[i] = slice.charCodeAt(i)
+            }
+
+            const byteArray = new Uint8Array(byteNumbers)
+            byteArrays.push(byteArray)
+        }
+
+        const file = new File(byteArrays, 'send.png', {type: contentType})
+        return file
+    }
+
+    const submitSizeAssume = () => {
+        const formData = new FormData()
+        formData.append('screen_img', resultImg)
+        setSpinner(true)
+        API.sizeSend(formData)
+            .then(resp => getResponse(resp))
+            .catch(error => console.log(error))
+    }
+
+    const getResponse = (resp) => {
+        setResultResponse(resp)
+        console.log(resp)
+        setSpinner(false)
+        setPageName('resultPage')
+    }
+
+    const resizeImage = async (targetImage) => {
+        var block = targetImage.split(';')
+        var cType = block[0].split(':')[1]
+        var realData = block[1].split(',')[1]
+        var blob = b64ToFile(realData, cType)
+        const options = {
+            maxWidthOrHeight: 1280
+        }
+
+        try {
+            const compressedFile = await imageCompression(blob, options)
+            setResultImg(compressedFile)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const drawToCanvas = () => {
+        try {
+            const ctx = canvasRef.current.getContext('2d')
+            canvasRef.current.width = webRef.current.video.videoWidth
+            canvasRef.current.height = webRef.current.video.videoHeight
+
+            if(ctx && ctx !== null) {
+                if (webRef.current) {
+                    ctx.drawImage(webRef.current.video, 0, 0, canvasRef.current.width, canvasRef.current.height)
+                }
+
+                const blockSize = 7
+                // Rect => (x, y, w, h)
+                const x = canvasRef.current.width * 0.1
+                const y = canvasRef.current.height * 0.4
+                const w = canvasRef.current.height * 0.2 * 88 / 125
+                const h = canvasRef.current.height * 0.2
+
+                ctx.fillStyle = "white"
+
+                ctx.fillRect((x - blockSize), (y - blockSize), blockSize, 2 * blockSize)
+                ctx.fillRect(x, (y - blockSize), blockSize, blockSize)
+                
+                ctx.fillRect((x + w - blockSize), (y - blockSize), 2 * blockSize, blockSize)
+                ctx.fillRect((x + w), y, blockSize, blockSize)
+        
+                ctx.fillRect((x + w - blockSize), (y + h), 2 * blockSize, blockSize)
+                ctx.fillRect((x + w), (y + h - blockSize), blockSize, blockSize)
+        
+                ctx.fillRect((x - blockSize), (y + h - blockSize), blockSize, 2 * blockSize)
+                ctx.fillRect(x, (y + h), blockSize, blockSize)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const Styles = {
+        None: {display: 'none'},
+        Hide: {width: '0%'},
+        Video: {width:'100%', margin:'0', padding:'0'},
+    }
+
+    return (
+        <>
+        { isMobile ?
+        <>
+            { pageName === 'uploadPage' ?
+            <div className='sizeCameraWrap'>
+                <div className='selfwrap'>
+                    { spinner ? 
+                        <div className='modal'>
+                            <div className='spinnerModal'>
+                                <Loader type="Circles" color="#00BFFF" height={100} width={100} /><br />
+                                <span className="selfCheckDelayText">셀프 체크 중입니다...</span>
+                            </div>
+                        </div> : null
+                    }
+                    <Box sx={{ flexGrow: 1 }} className="selfHeader">
+                    <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
+                        <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                        
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        셀프 부피 측정
+                        </Typography>
+                        <Button color="inherit" variant="outlined" onClick={() => startOrStop()}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
+                        </Toolbar>
+                    </AppBar>
+                    </Box>
+                    <div className='canvasDisplay'>
+                        <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+                        <canvas ref={canvasRef} style={Styles.Video} />
+                    </div>
+                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>부피 체크 시작</Button></p>
+
+                </div></div> :
+                <div style={{textAlign:'center'}}>
+                    <h3>부피 측정 결과</h3>
+                    <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
+                </div>
+            }
+        </>
+        : <div><h3>PC는 기능을 지원하지 않습니다.</h3></div>
+        }
+
+        </>
+    );
+}
+
+export default Page8
