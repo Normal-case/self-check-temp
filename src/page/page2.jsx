@@ -26,7 +26,7 @@ const page2 = () => {
 <br />
 <br />
 
-<img src="img/checkResult.png" style={{margin:'12px auto', width:"90%", border:'1px solid #ddd'}} />
+<img src="img/checkResult.jpg" style={{margin:'12px auto', width:"90%", border:'1px solid #ddd'}} />
 <h3>검사 결과와 함께 검출된 물품의 <br /> 항공 규정을 확인할 수 있습니다.</h3>
 
 
