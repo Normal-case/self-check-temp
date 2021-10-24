@@ -8,8 +8,8 @@ import ZippoLighter from './lighter/zippoLighter'
 
 function LighterDesc() {
 
-    const [selectValue, setSelectValue] = useState('물')
-    const [displayTable, setDisplayTable] = useState(<Water />)
+    const [selectValue, setSelectValue] = useState('일반 라이터')
+    const [displayTable, setDisplayTable] = useState(<Lighter />)
 
     useEffect(() => {}, [selectValue])
 
