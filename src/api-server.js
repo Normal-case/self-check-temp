@@ -12,4 +12,8 @@ export default class API {
     static volumnSend(body){
         return axios.post("https://self-check-api.shop/api/volumn/", body)
     }
+
+    static adminSend(){
+        return axios.get("https://self-check-api.shop/api/admin")
+    }
 }

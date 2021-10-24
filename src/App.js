@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useLocation, Route } from "react-router-dom"
 import SlideRoutes from 'react-slide-routes'
 import firstPage from './page/firstPage.jsx'
+import Admin from './page/admin.jsx'
 
 import page2 from "./page/page2.jsx"
 import page3 from "./page/page3.jsx"
@@ -33,6 +34,7 @@ function App() {
         <Route path="/page7" component={page7} exact={true} />
         <Route path="/page8" component={page8} exact={true} />
       </SlideRoutes>
+        <Route path="/admin" component={Admin} exact={true} />
     </>
   );
 }
