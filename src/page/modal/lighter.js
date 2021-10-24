@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
-import GunLighter from './lighter/GunLighter'
+import GunLighter from './lighter/gunLighter'
 import Lighter from './lighter/lighter'
 import ZippoLighter from './lighter/zippoLighter'
 
