@@ -29,13 +29,13 @@ const Page5 = () => {
             <br />
             <br /> 
 
-            <img src='img/volumnSample.png' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} />
+            <img src='img/sizeSample.png' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} />
         <h3>① 다시 촬영 버튼을 클릭하면<br />화면이 다시 활성화되고, 재활영이 가능합니다.</h3> 
            <h3>② 화면이 멈추고 크기 체크 시작 버튼이<br /> 활성화되면 버튼을 눌러주세요. </h3>
 
             <br />
             <br />
-            <img src='img/volumnResult.jpg' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} />
+            <img src='img/sizeResult.jpg' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} />
             <h3>체크가 끝나면 위 사진과 같이<br />측정 물체의 길이가 출력됩니다.</h3>
 
             <br />
