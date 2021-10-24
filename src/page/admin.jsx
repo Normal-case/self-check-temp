@@ -20,6 +20,8 @@ const Admin = () => {
     const result = []
 
     if (responseResult){
+      console.log('if inner')
+      console.log(responseResult)
       for (let i=0;i<responseResult['data']['knife'];i++){
         result.push(
           <>
@@ -46,6 +48,10 @@ const Admin = () => {
           </>
         )
       }
+    }
+    else {
+      console.log('else')
+      console.log(responseResult)
     }
 
     return result
