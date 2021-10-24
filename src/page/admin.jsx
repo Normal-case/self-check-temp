@@ -50,6 +50,9 @@ const Admin = () => {
             </>
           ) : null
         } */}
+        { responseResult['data']['knife'] 
+        ? responseResult['data']['knife'].map((value, index) => <h4>{value['fields']['product']}</h4>) : null
+        }
       </div>
      </>  
   );
