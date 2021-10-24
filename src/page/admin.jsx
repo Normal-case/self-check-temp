@@ -16,9 +16,9 @@ const Admin = () => {
     console.log(resp)
     setResponseResult(resp)
     console.log(typeof(resp['data']))
-    console.log(typeof(resp['data']['data']))
+    console.log(typeof(resp['data']['knife']))
     console.log(resp['data'])
-    console.log(resp['data']['data'])
+    console.log(resp['data']['knife'])
   }
 
   return (
