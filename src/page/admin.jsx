@@ -15,12 +15,12 @@ const Admin = () => {
   const getResponse = (resp) => {
     console.log(resp)
     setResponseResult(resp)
+    console.log(typeof(resp))
   }
 
   return (
      <>
       <h3>관리자 페이지</h3>
-      {responseResult['data']}
      </>  
   );
 };
