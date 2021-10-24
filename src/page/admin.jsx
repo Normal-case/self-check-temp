@@ -30,8 +30,9 @@ const Admin = () => {
       console.log(typeof(JSON.parse(JSON.stringify(responseResult['data']['knife']))))
       console.log(JSON.stringify(responseResult['data']['knife']))
       console.log(JSON.parse(JSON.stringify(responseResult['data']['knife'])))
-      for (let i=0;i<responseResult['data']['knife'].length;i++){
-        console.log(responseResult['data']['knife'][i])
+      const json_knife = JSON.parse(JSON.stringify(responseResult['data']['knife']))
+      for (let i=0;i<json_knife.length;i++){
+        console.log(json_knife[i])
         result.push(
           <>
           {responseResult['data']['knife'][i]['fields']['product']}
