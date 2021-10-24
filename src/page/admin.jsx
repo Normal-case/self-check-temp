@@ -5,15 +5,15 @@ import API from '../api-server'
 const Admin = () => {
 
   const [responseResult, setResponseResult] = useState('')
-  const startPage = useRef(false)
+  const [firstTime, setFirstTime] = useState(false)
 
   useEffect(() => {
-    if(!startPage){
+    if(!firstTime){
       API.adminSend()
         .then(resp => getResponse(resp))
         .catch(error => console.log(error))
       
-      startPage = true
+      setFirstTime(true)
     }
   }, [responseResult])
 
@@ -67,7 +67,7 @@ const Admin = () => {
       <h3>관리자 페이지</h3>
       <div>
         칼
-        {responseResult ? forLoopKnife() : null}
+        {forLoopKnife()}
       </div>
      </>  
   );
