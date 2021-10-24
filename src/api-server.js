@@ -14,6 +14,6 @@ export default class API {
     }
 
     static adminSend(){
-        return axios.get("https://self-check-api.shop/api/admin")
+        return axios.get("https://self-check-api.shop/api/admin/")
     }
 }
