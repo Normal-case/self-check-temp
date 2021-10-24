@@ -54,7 +54,7 @@ const Admin = () => {
       <h3>관리자 페이지</h3>
       <div>
         칼
-        {/* {forLoopKnife()} */}
+        {console.log(responseResult['data'])}
       </div>
      </>  
   );
