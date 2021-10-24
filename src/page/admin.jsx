@@ -4,7 +4,7 @@ import API from '../api-server'
 
 const Admin = () => {
 
-  const [responseResult, setResponseResult] = useState(null)
+  const [responseResult, setResponseResult] = useState('')
 
   useEffect(() => {
     API.adminSend()
