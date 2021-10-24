@@ -10,12 +10,13 @@ const Admin = () => {
     API.adminSend()
       .then(resp => getResponse(resp))
       .catch(error => console.log(error))
-  })
+  }, [])
 
   const getResponse = (resp) => {
     console.log(resp)
     setResponseResult(resp)
-    console.log(typeof(resp))
+    console.log(typeof(resp['data']))
+    console.log(typeof(resp['data']['data']))
   }
 
   return (
