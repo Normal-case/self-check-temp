@@ -21,19 +21,14 @@ const Admin = () => {
     setResponseResult(resp)
   }
 
-  const forLoopKnife = () => {
+  const forLoopKnife = (categ) => {
     const result = []
 
     if (responseResult){
-      console.log('if inner')
-      console.log(responseResult)
-      console.log(responseResult['data']['knife'])
-      console.log(JSON.parse(responseResult['data']['knife']))
-      const json_knife = JSON.parse(responseResult['data']['knife'])
+      const json_knife = JSON.parse(responseResult['data'][categ])
       for (let i=0;i<json_knife.length;i++){
-        console.log(json_knife[i])
         result.push(
-          <>
+          <div className='adminTable'>
           {json_knife[i]['fields']['product']}
           <table>
             <thead>
@@ -54,16 +49,11 @@ const Admin = () => {
               </tr>
             </tbody>
           </table>
-          </>
+          </div>
         )
       }
     }
-    else {
-      console.log('else')
-      console.log(responseResult)
-    }
 
-    console.log(result)
     return result
   }
 
@@ -71,10 +61,34 @@ const Admin = () => {
      <>
       <h3>관리자 페이지</h3>
       <div>
-        칼
-        {forLoopKnife()}
+        칼 <br />
+        {forLoopKnife('knife')}
       </div>
-     </>  
+      <div>
+        가위 <br />
+        {forLoopKnife('scissors')}
+      </div>
+      <div>
+        드라이버 <br />
+        {forLoopKnife('driver')}
+      </div>
+      <div>
+        병 <br />
+        {forLoopKnife('bottle')}
+      </div>
+      <div>
+        스프레이 <br />
+        {forLoopKnife('spray')}
+      </div>
+      <div>
+        음식물 <br />
+        {forLoopKnife('food')}
+      </div>
+      <div>
+        라이터 <br />
+        {forLoopKnife('lighter')}
+      </div>
+     </>
   );
 };
 
