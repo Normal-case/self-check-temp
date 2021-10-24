@@ -34,7 +34,7 @@ const Admin = () => {
         console.log(json_knife[i])
         result.push(
           <>
-          {responseResult['data']['knife'][i]['fields']['product']}
+          {json_knife[i]['fields']['product']}
           <table>
             <thead>
               <tr>
@@ -45,12 +45,12 @@ const Admin = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{responseResult['data']['knife'][i]['fields']['checked']}</td>
-                <td>{responseResult['data']['knife'][i]['fields']['carryon']}</td>
-                <td>{responseResult['data']['knife'][i]['fields']['special']}</td>
+                <td>{json_knife[i]['fields']['checked']}</td>
+                <td>{json_knife[i]['fields']['carryon']}</td>
+                <td>{json_knife[i]['fields']['special']}</td>
               </tr>
               <tr>
-                <td colSpan='3'>{responseResult['data']['knife'][i]['fields']['description']}</td>
+                <td colSpan='3'>{json_knife[i]['fields']['description']}</td>
               </tr>
             </tbody>
           </table>
