@@ -13,9 +13,7 @@ const Admin = () => {
   }, [])
 
   const getResponse = (resp) => {
-    console.log(resp)
     setResponseResult(resp)
-    console.log(resp['data']['knife'])
   }
 
   // const forLoopKnife = () => {
