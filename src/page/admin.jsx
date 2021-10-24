@@ -22,7 +22,7 @@ const Admin = () => {
       <h3>관리자 페이지</h3>
       <div>
         칼
-        {
+        { responseResult['data']['knife'] ?
           responseResult['data']['knife'].map((value, index) => 
             <>
             <h4>{value['fields']['product']}</h4>
@@ -46,7 +46,7 @@ const Admin = () => {
               </tbody>
             </table>
             </>
-          )
+          ) : null
         }
       </div>
      </>  
