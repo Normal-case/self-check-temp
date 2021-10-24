@@ -15,15 +15,40 @@ const Admin = () => {
   const getResponse = (resp) => {
     console.log(resp)
     setResponseResult(resp)
-    console.log(typeof(resp['data']))
-    console.log(typeof(resp['data']['knife']))
-    console.log(resp['data'])
-    console.log(resp['data']['knife'])
   }
 
   return (
      <>
       <h3>관리자 페이지</h3>
+      <div>
+        칼
+        {
+          responseResult['data']['knife'].map((value, index) => 
+            <>
+            <h4>{value['fields']['product']}</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>위탁수하물</th>
+                  <th>기내휴대</th>
+                  <th>특별규정</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{value['fields']['checked']}</td>
+                  <td>{value['fields']['carryon']}</td>
+                  <td>{value['fields']['special']}</td>
+                </tr>
+                <tr>
+                  <td colSpan='3'>{value['fields']['description']}</td>
+                </tr>
+              </tbody>
+            </table>
+            </>
+          )
+        }
+      </div>
      </>  
   );
 };
