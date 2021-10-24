@@ -59,6 +59,7 @@ const Admin = () => {
       console.log(responseResult)
     }
 
+    console.log(result)
     return result
   }
 
