@@ -15,6 +15,8 @@ const Admin = () => {
   const getResponse = (resp) => {
     console.log(resp)
     setResponseResult(resp)
+    console.log(resp['data'])
+    console.log(resp['data']['knife'])
   }
 
   return (
@@ -22,7 +24,7 @@ const Admin = () => {
       <h3>관리자 페이지</h3>
       <div>
         칼
-        { responseResult['data']['knife'] ?
+        {/* { responseResult['data']['knife'] ?
           responseResult['data']['knife'].map((value, index) => 
             <>
             <h4>{value['fields']['product']}</h4>
@@ -47,7 +49,7 @@ const Admin = () => {
             </table>
             </>
           ) : null
-        }
+        } */}
       </div>
      </>  
   );
