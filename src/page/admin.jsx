@@ -28,6 +28,7 @@ const Admin = () => {
       console.log('if inner')
       console.log(responseResult)
       for (let i=0;i<responseResult['data']['knife'].length;i++){
+        console.log(responseResult['data']['knife'][i])
         result.push(
           <>
           {responseResult['data']['knife'][i]['fields']['product']}
