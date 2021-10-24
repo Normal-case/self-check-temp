@@ -27,7 +27,7 @@ const Admin = () => {
     if (responseResult){
       console.log('if inner')
       console.log(responseResult)
-      for (let i=0;i<responseResult['data']['knife'];i++){
+      for (let i=0;i<responseResult['data']['knife'].length;i++){
         result.push(
           <>
           {responseResult['data']['knife'][i]['fields']['product']}
