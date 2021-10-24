@@ -12,6 +12,8 @@ const Admin = () => {
       API.adminSend()
         .then(resp => getResponse(resp))
         .catch(error => console.log(error))
+      
+      startPage = true
     }
   }, [responseResult])
 
