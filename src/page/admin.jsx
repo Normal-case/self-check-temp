@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import API from '../api-server'
 
 
 const Admin = () => {
 
   const [responseResult, setResponseResult] = useState('')
+  const startPage = useRef(false)
 
   useEffect(() => {
-    API.adminSend()
-      .then(resp => getResponse(resp))
-      .catch(error => console.log(error))
-  }, [])
+    if(!startPage){
+      API.adminSend()
+        .then(resp => getResponse(resp))
+        .catch(error => console.log(error))
+    }
+  }, [responseResult])
 
   const getResponse = (resp) => {
     setResponseResult(resp)
@@ -62,7 +65,7 @@ const Admin = () => {
       <h3>관리자 페이지</h3>
       <div>
         칼
-        {forLoopKnife()}
+        {responseResult ? forLoopKnife() : null}
       </div>
      </>  
   );
