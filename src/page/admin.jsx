@@ -26,7 +26,10 @@ const Admin = () => {
 
     if (responseResult){
       console.log('if inner')
-      console.log(typeof(responseResult['data']['knife']))
+      console.log(typeof(JSON.stringify(responseResult['data']['knife'])))
+      console.log(typeof(JSON.parse(JSON.stringify(responseResult['data']['knife']))))
+      console.log(JSON.stringify(responseResult['data']['knife']))
+      console.log(JSON.parse(JSON.stringify(responseResult['data']['knife'])))
       for (let i=0;i<responseResult['data']['knife'].length;i++){
         console.log(responseResult['data']['knife'][i])
         result.push(
