@@ -10,15 +10,15 @@ const page2 = () => {
       <img src="img/exclamation_mark.png" width="48px" />
       <h2>셀프 체크 설명서</h2>
 
-<img src="img/checkSample.jpg" style={{margin:'12px auto', width:"90%"}} />
+<img src="img/beforeUpload.png" style={{margin:'12px auto', width:"60%", border:'1px solid #ddd'}} />
 
-<h3>먼저, 항공기에 반입 가능한지 <br /> 확인하고 싶은 물품들을 <br /> 책상 또는 바닥에 잘 나열해주세요.</h3>
+<ul>
+  <li> ➤ 항공기 반입 여부를 확인하고 싶은 물건을<br />책상 또는 바닥에 나열해주세요.</li><br />
+  <li> ➤ 사진을 찍은 후 셀프 체크 화면에 사진을 업로드 해주세요.</li>
+</ul>
 
 
-<br />
-<br />
 
-<img src="img/checkUpload.jpg" style={{margin:'12px auto', width:"90%", border:'1px solid #ddd'}} />
 <h3>사진을 찍은 후, <br /> 셀프 체크 화면에 사진을 업로드 해주세요.<br /> 
 셀프 체크 시작버튼이 활성화 되면 <br /> 해당 버튼을 눌러 시작해주세요.
 </h3>
@@ -26,14 +26,14 @@ const page2 = () => {
 <br />
 <br />
 
-<img src="img/checkResult.jpg" style={{margin:'12px auto', width:"90%", border:'1px solid #ddd'}} />
+{/* <img src="img/checkResult.jpg" style={{margin:'12px auto', width:"90%", border:'1px solid #ddd'}} /> */}
 <h3>검사 결과와 함께 검출된 물품의 <br /> 항공 규정을 확인할 수 있습니다.</h3>
 
 
 <br />
 <br />
 
-<img src="img/checkModal.jpg" style={{margin:'12px auto', width:'90%', border:'1px solid #ddd'}} />
+{/* <img src="img/checkModal.jpg" style={{margin:'12px auto', width:'90%', border:'1px solid #ddd'}} /> */}
 <h3>규정을 통해 보다 자세한 내용을<br />확인할 수 있습니다.</h3>
 
 <footer>

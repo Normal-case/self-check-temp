@@ -64,7 +64,7 @@ export default function TabNav() {
      </span>
 
 <br /><br /><br />
- <Link to="/page2"> <Button variant="outlined">셀프체크 시작하기</Button> </Link>
+ <Link to="/page3"> <Button variant="outlined">셀프체크 시작하기</Button> </Link>
 
       </TabPanel>
       <TabPanel value={value} index={1}>

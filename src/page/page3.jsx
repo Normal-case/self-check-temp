@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 const page3 = () => {
   return (
     <div className="pageWrap arrowWrap">
-     <Link to="/page2" className="BackIcon"><ArrowBackIcon fontSize="large" /></Link>
+     <Link to="/" className="BackIcon"><ArrowBackIcon fontSize="large" /></Link>
     <img src="img/check1.png" className="car" />
       <h2>업로드 전 체크해주세요</h2>
 
