@@ -26,7 +26,7 @@ const Page7 = () => {
 
             <br />
 
-            <h3><span className='textImportant'>부피를 측정하고자하는 병을 세로로 세워 촬영해주세요.</span></h3> 
+            <h3>부피를 측정하고자하는 <span className='textImportant'>병을 세로로 세워 촬영</span>해주세요.</h3> 
 
             {/* <img src='img/volumnSample.png' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} /> */}
 
