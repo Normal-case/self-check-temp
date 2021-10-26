@@ -20,22 +20,18 @@ const Page7 = () => {
             <br />
             <br />
 
-            {/* <img src='img/guide4.png' style={{margin:'12px auto', width:'90%'}} /> */}
+            <img src='img/volumeSample.png' style={{margin:'12px auto', width:'45%'}} />
 
-            <h3>카메라 화면에 준비된 필터에 맞게 여권을<br /> 위치시킨 뒤, 촬영하기 버튼을 눌러주세요.</h3>
+            <h3>카메라 화면에 <span className='textImportant'>준비된 필터에 맞게 여권을<br /> 위치</span>시킨 뒤, 촬영하기 버튼을 눌러주세요.</h3>
 
             <br />
-            <br />
 
-            <h3>부피를 측정하고자하는 병을 세로로 세워 촬영해주세요.</h3> 
+            <h3><span className='textImportant'>부피를 측정하고자하는 병을 세로로 세워 촬영해주세요.</span></h3> 
 
             {/* <img src='img/volumnSample.png' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} /> */}
 
-            <br />
-            <br />
             {/* <img src='img/volumnResult.jpg' style={{margin: '12px auto', width:'90%', border:'1px solid #ddd'}} /> */}
 
-            <br />
             <br />
 
             <Link to='/page8'><Button variant='outlined'>다음</Button></Link>
