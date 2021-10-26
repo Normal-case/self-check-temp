@@ -20,7 +20,7 @@ const Page5 = () => {
             <br />
             <br />
 
-            <img src='img/sizeSample.png' style={{margin:'12px auto', width:'90%'}} />
+            <img src='img/sizeSample.png' style={{margin:'12px auto', width:'60%'}} />
 
             <h3>카메라 화면에 준비된 필터에 맞게 여권을<br /> 위치시킨 뒤, 촬영하기 버튼을 눌러주세요.</h3>
 
