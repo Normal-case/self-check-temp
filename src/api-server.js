@@ -2,15 +2,15 @@ import axios from "axios";
 
 export default class API {
     static imageSend(body){
-        return axios.post("https://self-check-api.shop/api/", body)
+        return axios.post("https://self-check.site/api/", body)
     }
 
     static sizeSend(body){
-        return axios.post("https://self-check-api.shop/api/size/", body)
+        return axios.post("https://self-check.site/api/size/", body)
     }
 
     static volumnSend(body){
-        return axios.post("https://self-check-api.shop/api/volumn/", body)
+        return axios.post("https://self-check.site/api/volumn/", body)
     }
 
     static adminSend(){
