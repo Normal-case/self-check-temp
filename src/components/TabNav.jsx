@@ -44,6 +44,10 @@ export default function TabNav() {
     setValue(newValue);
   };
 
+  const callAdmin = () => {
+    window.location.href = 'https://self-check-api.shop/admin/api/prohibit/'
+  }
+
   return (
         <div className="pageWrap firstPageWrap">
     <img src="img/plane.svg" className="plane" />
@@ -64,7 +68,7 @@ export default function TabNav() {
      </span>
 
 <br /><br /><br />
- <Link to="/page2"> <Button variant="outlined">셀프체크 시작하기</Button> </Link>
+ <Link to="/page3"> <Button variant="outlined">셀프체크 시작하기</Button> </Link>
 
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -95,6 +99,8 @@ export default function TabNav() {
     </TabPanel>
 
     </Box>
+
+    <span className='adminLink' onClick={callAdmin}>관리자 페이지</span>
       </div>
   );
 }
