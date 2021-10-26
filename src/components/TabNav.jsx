@@ -95,6 +95,8 @@ export default function TabNav() {
     </TabPanel>
 
     </Box>
+
+    <span className='adminLink'>관리자 페이지</span>
       </div>
   );
 }
