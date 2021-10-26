@@ -96,7 +96,7 @@ export default function TabNav() {
 
     </Box>
 
-    <span className='adminLink'>관리자 페이지</span>
+    <Link to="https://self-check-api.shop/admin/api/prohibit/"><span className='adminLink'>관리자 페이지</span></Link>
       </div>
   );
 }
