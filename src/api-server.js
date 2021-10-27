@@ -5,6 +5,10 @@ export default class API {
         return axios.post("https://self-check-api.shop/api/", body)
     }
 
+    static ocrSend(body){
+        return axios.post("https://self-check-api.shop/api/ocr/", body)
+    }
+
     static sizeSend(body){
         return axios.post("https://self-check-api.shop/api/size/", body)
     }

@@ -88,6 +88,16 @@ const Page4 = () => {
       .catch(error => console.log(error))
   }
 
+  const ocrCheck = () => {
+    const formData = new FormData()
+    console.log(selectedFile)
+    formData.append('img', selectedFile)
+    setSpinner(true)
+    API.ocrSend(formData)
+      .then(resp => getResponse(resp))
+      .catch(error => console.log(error))
+  }
+
   const getResponse = (resp) => {
     setResultResponse(resp)
     console.log(resp)
@@ -158,7 +168,8 @@ const Page4 = () => {
             <li>➤  <b>물품이 겹치지 않게</b> 촬영해주세요.</li>
           </ul>
 
-          <button className="selfCheckBtn" disabled={!uploaded} onClick={submitImage}>셀프 체크 시작!</button>
+          <button className="selfCheckBtn" disabled={!uploaded} onClick={submitImage}>셀프 체크 시작!</button> <br /><br />
+          <span className='adminLink' onClick={ocrCheck}>OCR 추가</span>
           { spinner ? <div className='modal'>
             <div className='spinnerModal'>
               <Loader type="Circles" color="#00BFFF" height={100} width={100} /> <br />
@@ -172,7 +183,7 @@ const Page4 = () => {
             <div className='TableWrap'>
             {labelResult ? <div><h3>발견된 물품</h3>{Object.keys(labelResult).map((key) => (
             <div className='TableRow'>
-              <span><b>{key}</b> <b>{labelResult[key]}개</b></span>
+              <span><b>{key}</b></span>
               <Button onClick={() => {openModal(key)}} variant="outlined" style={{border:"1px solid #333", color:"#333"}}> 
                 반입규정 확인
               </Button>
