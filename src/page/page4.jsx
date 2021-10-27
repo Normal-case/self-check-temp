@@ -13,6 +13,7 @@ import KnifeDesc from './modal/knife'
 import LighterDesc from './modal/lighter'
 import ScissorsDesc from './modal/scissors'
 import SprayDesc from './modal/spray'
+import FoodDesc from './modal/food'
 import Modal from './modal'
 
 
@@ -133,6 +134,8 @@ const Page4 = () => {
         return <LighterDesc />
       case '드라이버':
         return <DriverDesc />
+      case '음식물':
+        return <FoodDesc />
       default:
         return
     }
