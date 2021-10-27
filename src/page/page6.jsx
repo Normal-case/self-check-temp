@@ -166,6 +166,7 @@ const Page6 = () => {
                             </div>
                         </div> : null
                     }
+                    <div className="selfHeaderWrap">
                     <Box sx={{ flexGrow: 1 }} className="selfHeader">
                     <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
                         <Toolbar>
@@ -190,7 +191,7 @@ const Page6 = () => {
                         <canvas ref={canvasRef} style={Styles.Video} />
                     </div>
                     <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
-
+</div>
                 </div></div> :
                 <div style={{textAlign:'center'}}>
                     <h3>크기 측정 결과</h3>
