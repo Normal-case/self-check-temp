@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button } from '@mui/material';
-import imageCompression from 'browser-image-compression';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { Button } from '@mui/material'
+import imageCompression from 'browser-image-compression'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import API from '../api-server'
 import Loader from "react-loader-spinner"
 
@@ -16,20 +16,20 @@ import SprayDesc from './modal/spray'
 import FoodDesc from './modal/food'
 import Modal from './modal'
 
-
-
+// upload image component and display result component for self check
 const Page4 = () => {
 
-  const [selectedFile, setSelectedFile] = useState()
-  const [imgBase64, setImgBase64] = useState('img/download.png')
-  const [thumbnail, setThumbnail] = useState(null)
-  const [uploaded, setUploaded] = useState(false)
-  const [spinner, setSpinner] = useState(false)
-  const [resultResponse, setResultResponse] = useState(null)
-  const [pageName, setPageName] = useState('uploadPage')
-  const [labelResult, setLabelResult] = useState(null)
-  const [modalVisible, setModalVisible] = useState(false)
-  const [modalCase, setModalCase] = useState('')
+  const [selectedFile, setSelectedFile] = useState()                // image file that will be sent to the server
+  const [imgBase64, setImgBase64] = useState()                      // image file that display on the page
+  const [uploaded, setUploaded] = useState(false)                   // uploaded => custom image uploaded, !uploaded => default image uploaded
+  const [spinner, setSpinner] = useState(false)                     // spinner => display spinner, !spinner => hide spinner
+  const [resultResponse, setResultResponse] = useState(null)        // save information received from the server
+  const [pageName, setPageName] = useState('uploadPage')            // pageName == uploadPage ? upload page : result page
+  const [labelResult, setLabelResult] = useState(null)              // save labelResult Object
+  const [modalVisible, setModalVisible] = useState(false)           // modal display variable
+  const [modalCase, setModalCase] = useState('')                    // product name
+
+  // label change english name to korean name
   const labelNameChange = {
     'cup': '컵',
     'bottle': '병',
@@ -44,7 +44,7 @@ const Page4 = () => {
   useEffect(() => {}, [spinner])
 
 
-  // 사용자가 업로드한 이미지를 축소하는 함수
+  // resize uploaded image before sending server
   const resizeImage = async (targetImage) => {
     const options = {
       maxWidthOrHeight: 1280
@@ -60,7 +60,7 @@ const Page4 = () => {
     }
   }
 
-  // 사용자가 업로드한 이미지를 thumbnail로 만들어 미리보기 이미지를 만드는 함수
+  // preview uploaded image function
   const handleChangeFile = (compressedFile) => {
     let reader = new FileReader();
     reader.onloadend = () => {
@@ -71,16 +71,13 @@ const Page4 = () => {
     }
     if (compressedFile) {
       reader.readAsDataURL(compressedFile);
-      setThumbnail(compressedFile)
       setUploaded(true)
     }
   }
 
-
-  // 셀프체크 버튼을 눌렀을 때 서버로 압축된 파일을 전송하는 함수
+  // send image file to server when the self-check button click
   const submitImage = () => {
     const formData = new FormData()
-    console.log(selectedFile)
     formData.append('img', selectedFile)
     setSpinner(true)
     API.imageSend(formData)
@@ -88,9 +85,9 @@ const Page4 = () => {
       .catch(error => console.log(error))
   }
 
+  // send image file to server for getting ocr information
   const ocrCheck = () => {
     const formData = new FormData()
-    console.log(selectedFile)
     formData.append('img', selectedFile)
     setSpinner(true)
     API.ocrSend(formData)
@@ -98,9 +95,10 @@ const Page4 = () => {
       .catch(error => console.log(error))
   }
 
+  // save response
+  // resp => {'data': {'after_detection':'base64 img', 'label':'detected label'}}
   const getResponse = (resp) => {
     setResultResponse(resp)
-    console.log(resp)
     setSpinner(false)
     setPageName('resultPage')
     const label_result = []
@@ -115,19 +113,23 @@ const Page4 = () => {
     setLabelResult(label_result)
   }
 
+  // open modal
   const openModal = product => {
     setModalVisible(true)
     setModalCase(product)
   }
 
+  // close modal
   const closeModal = () => {
     setModalVisible(false)
   }
 
+  // reload web page
   const retry = () => {
     window.location.reload()
   }
 
+  // choose the right modal
   const chooseModal = () => {
     switch(modalCase) {
       case '컵':
@@ -156,7 +158,6 @@ const Page4 = () => {
       <Link to="/page3" className="BackIcon"><ArrowBackIcon fontSize="large" /></Link>
       { pageName === 'uploadPage' ? 
         <div>
-          {/* { !uploaded ? <h3>사진을 업로드해주세요.</h3> : <h3>사진이 업로드 되었습니다!</h3> } */}
 
           { !uploaded ? <div className="downloadWrap"> <img src='img/download.png' width="100px" /> </div> : <div className="downloadWrap downloadClearWrap"> <img src={imgBase64} width="80px" /> </div>  }
           <label htmlFor='input-file' id='inputFileLabel'>사진 업로드</label>

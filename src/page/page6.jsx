@@ -1,30 +1,31 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react"
 import API from '../api-server'
 import Webcam from 'react-webcam'
 import { isMobile } from 'react-device-detect'
 import imageCompression from "browser-image-compression"
 import Loader from "react-loader-spinner"
-import { Link } from "react-router-dom";
-import { Button } from '@mui/material';
+import { Link } from "react-router-dom"
+import { Button } from '@mui/material'
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import CameraAltIcon from '@mui/icons-material/CameraAlt'
 
+// take a photo component and display result
 const Page6 = () => {
 
-    const [timer, setTimer] = useState(undefined)
-    const [resultImg, setResultImg] = useState(null)
-    const [spinner, setSpinner] = useState(false)
-    const [pageName, setPageName] = useState('uploadPage')
-    const [resultResponse, setResultResponse] = useState(null)
-    const [scissors, setScissors] = useState(null)
-    const [driver, setDriver] = useState(null)
-    const webRef = useRef(null)
-    const canvasRef = useRef(null)
+    const [timer, setTimer] = useState(undefined)               // setting timer for capture
+    const [resultImg, setResultImg] = useState(null)            // save compressed image
+    const [spinner, setSpinner] = useState(false)               // spinner => display spinner, !spinner => hide spinner
+    const [pageName, setPageName] = useState('uploadPage')      // pageName == uploadPage ? upload page : result page
+    const [resultResponse, setResultResponse] = useState(null)  // save information received from the server
+    const [scissors, setScissors] = useState(null)              // check detected scissors
+    const [driver, setDriver] = useState(null)                  // check detected driver
+    const webRef = useRef(null)                                 // webcam stream
+    const canvasRef = useRef(null)                              // canvas stream (duplicated webRef)
 
     const videoContraints = {
         facingMode: 'environment'
@@ -36,6 +37,7 @@ const Page6 = () => {
         }
     }, [])
 
+    // timer start or stop using set, clearInterval
     const startOrStop = () => {
         if(!timer) {
             const t = setInterval(() => drawToCanvas(), 0.1)
@@ -47,8 +49,10 @@ const Page6 = () => {
         }
     }
 
+    // base64 string to file image
     const b64ToFile = (realData, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(realData)
+        // change legacy code atob(realData) => Buffer.from(realData, 'base64').toString('binary')
+        const byteCharacters = Buffer.from(realData, 'base64').toString('binary')
         const byteArrays = []
 
         for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
@@ -67,6 +71,7 @@ const Page6 = () => {
         return file
     }
 
+    // send image file to server when the self-size button click
     const submitSizeAssume = () => {
         const formData = new FormData()
         formData.append('screen_img', resultImg)
@@ -76,9 +81,10 @@ const Page6 = () => {
             .catch(error => console.log(error))
     }
 
+    // save response
+    // resp => {'data': {'after_detection':'base64 img', 'scissors':[allowed, not allowed], 'driver':[allowed, not allowed]}}
     const getResponse = (resp) => {
         setResultResponse(resp)
-        console.log(resp)
         setSpinner(false)
         setPageName('resultPage')
 
@@ -86,6 +92,7 @@ const Page6 = () => {
         setDriver(resp['data']['driver'].reduce(function(a, b) {return a + b;}, 0))
     }
 
+    // when user click '촬영하기' button, the frame resize and save
     const resizeImage = async (targetImage) => {
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
@@ -103,10 +110,12 @@ const Page6 = () => {
         }
     }
 
+    // reload function
     const retry = () => {
         window.location.reload()
     }
 
+    // draw canvas with white filter
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -145,8 +154,8 @@ const Page6 = () => {
         }
     }
 
+    // style Hide => webCam, Video => canvas
     const Styles = {
-        None: {display: 'none'},
         Hide: {width: '0%'},
         Video: {width:'100%', margin:'0', padding:'0'},
     }
@@ -167,37 +176,36 @@ const Page6 = () => {
                         </div> : null
                     }
                     <div className="selfHeaderWrap">
-                    <Box sx={{ flexGrow: 1 }} className="selfHeader">
-                    <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
-                        <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                        
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        셀프 크기 측정
-                        </Typography>
-                        <Button color="inherit" variant="outlined" onClick={() => startOrStop()}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
-                        </Toolbar>
-                    </AppBar>
-                    </Box>
-                    <div className='canvasDisplay'>
-                        <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
-                        <canvas ref={canvasRef} style={Styles.Video} />
+                        <Box sx={{ flexGrow: 1 }} className="selfHeader">
+                        <AppBar position="static" style={{backgroundColor:"#fff", color:"#333", padding:"8px"}}>
+                            <Toolbar>
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                sx={{ mr: 2 }}
+                            >
+                            
+                            </IconButton>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>셀프 크기 측정</Typography>
+                            <Button color="inherit" variant="outlined" onClick={() => startOrStop()}> <CameraAltIcon /> &nbsp;{timer ? '촬영하기':'다시촬영'}</Button>
+                            </Toolbar>
+                        </AppBar>
+                        </Box>
+                        <div className='canvasDisplay'>
+                            <Webcam ref={webRef} videoConstraints={videoContraints} style={Styles.Hide} />
+                            <canvas ref={canvasRef} style={Styles.Video} />
+                        </div>
+                        <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
                     </div>
-                    <p> <Button color="inherit" variant="outlined" onClick={() => submitSizeAssume()} className="sizeCheckBtn" disabled={timer}>크기 체크 시작</Button></p>
-</div>
-                </div></div> :
+                </div>
+            </div> :
                 <div style={{textAlign:'center'}}>
                     <h3>크기 측정 결과</h3>
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
                     { 
-                        // 아무것도 발견하지 못했을 경우
+                        // the case that don't find anything
                         driver === 0 && scissors === 0 
                         ? <div>
                             물체가 인식되지 않았습니다. 다시 시도해주세요
@@ -206,7 +214,7 @@ const Page6 = () => {
                             </div>                            
                           </div> :
                         
-                        // 가위만 발견되었을 경우
+                        // the case that find scissors only
                         driver === 0 && scissors !== 0 
                         ? <div>
                             측정된 가위
@@ -229,7 +237,7 @@ const Page6 = () => {
                             </div>                            
                           </div> :
 
-                        // 드라이버만 발견되었을 경우
+                        // the case that find driver only
                         driver !== 0 && scissors === 0 
                         ? <div>
                             측정된 드라이버
@@ -252,7 +260,7 @@ const Page6 = () => {
                             </div>                            
                           </div> :
 
-                        // 드라이버와 가위 둘다 발견되었을 경우
+                        // the case that find both
                         driver !== 0 && scissors !== 0 
                         ? <div>
                             측정된 가위

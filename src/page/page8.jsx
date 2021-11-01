@@ -14,17 +14,18 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
+// take a photo component and display result
 const Page8 = () => {
 
-    const [timer, setTimer] = useState(undefined)
-    const [resultImg, setResultImg] = useState(null)
-    const [spinner, setSpinner] = useState(false)
-    const [pageName, setPageName] = useState('uploadPage')
-    const [resultResponse, setResultResponse] = useState(null)
-    const [bottle, setBottle] = useState(null)
-    const [spray, setSpray] = useState(null)
-    const webRef = useRef(null)
-    const canvasRef = useRef(null)
+    const [timer, setTimer] = useState(undefined)               // settings timer for capture
+    const [resultImg, setResultImg] = useState(null)            // save compressed image
+    const [spinner, setSpinner] = useState(false)               // spinner => display spinner, !spinner => hide spinner
+    const [pageName, setPageName] = useState('uploadPage')      // pageName == uploadPage ? upload page : result page
+    const [resultResponse, setResultResponse] = useState(null)  // save information received from the server
+    const [bottle, setBottle] = useState(null)                  // check detected bottle
+    const [spray, setSpray] = useState(null)                    // check detected spray
+    const webRef = useRef(null)                                 // webcam stream
+    const canvasRef = useRef(null)                              // canvas stream (duplicated webRef)
 
     const videoContraints = {
         facingMode: 'environment'
@@ -36,6 +37,7 @@ const Page8 = () => {
         }
     }, [])
 
+    // timer start or stop using set, clearInterval
     const startOrStop = () => {
         if(!timer) {
             const t = setInterval(() => drawToCanvas(), 0.1)
@@ -47,8 +49,10 @@ const Page8 = () => {
         }
     }
 
+    // base64 string to file image
     const b64ToFile = (realData, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(realData)
+        // change legacy code atob(realData) => Buffer.from(realData, 'base64').toString('binary')
+        const byteCharacters = Buffer.from(realData).toString('binary')
         const byteArrays = []
 
         for (let offset=0;offset<byteCharacters.length;offset+=sliceSize){
@@ -67,6 +71,7 @@ const Page8 = () => {
         return file
     }
 
+    // send image file to server when the self-volume button click
     const submitSizeAssume = () => {
         const formData = new FormData()
         formData.append('screen_img', resultImg)
@@ -76,9 +81,10 @@ const Page8 = () => {
             .catch(error => console.log(error))
     }
 
+    // save response
+    // resp => {'data': {'after_detection':'base64 img', 'bottle':[allowed, not allowed], 'spray':[allowed, not allowed]}}
     const getResponse = (resp) => {
         setResultResponse(resp)
-        console.log(resp)
         setSpinner(false)
         setPageName('resultPage')
 
@@ -86,6 +92,7 @@ const Page8 = () => {
         setSpray(resp['data']['spray'].reduce(function(a, b) {return a + b;}, 0))
     }
 
+    // when user click '촬영하기' button, the frame resize and save
     const resizeImage = async (targetImage) => {
         var block = targetImage.split(';')
         var cType = block[0].split(':')[1]
@@ -103,10 +110,12 @@ const Page8 = () => {
         }
     }
 
+    // reload function
     const retry = () => {
         window.location.reload()
     }
 
+    // draw canvas with white filter
     const drawToCanvas = () => {
         try {
             const ctx = canvasRef.current.getContext('2d')
@@ -145,8 +154,8 @@ const Page8 = () => {
         }
     }
 
+    // style Hide => webCam, Video => canvas
     const Styles = {
-        None: {display: 'none'},
         Hide: {width: '0%'},
         Video: {width:'100%', margin:'0', padding:'0'},
     }
@@ -196,7 +205,7 @@ const Page8 = () => {
                     <h3>부피 측정 결과</h3>
                     <img src={'data:image/png;base64,' + resultResponse['data']['after_detection']} alt='' className='resultImg' style={{width:'90%'}} />
                     {
-                        // 아무것도 발견하지 못했을 경우
+                        // the case that don't find anything
                         bottle === 0 && spray === 0 
                         ? <div>
                             물체가 인식되지 않았습니다. 다시 시도해주세요
@@ -205,7 +214,7 @@ const Page8 = () => {
                             </div>                             
                           </div> :
                         
-                        // 스프레이만 발견되었을 경우
+                        // the case that find scissors only
                         bottle === 0 && spray !== 0 
                         ? <div>
                             측정된 스프레이
@@ -230,7 +239,7 @@ const Page8 = () => {
                             </div>  
                           </div> :
 
-                        // 병만 발견되었을 경우
+                        // the case that find driver only
                         bottle !== 0 && spray === 0 
                         ? <div>
                             측정된 병
@@ -255,7 +264,7 @@ const Page8 = () => {
                             </div>
                           </div> :
 
-                        // 병과 스프레이 둘다 발견되었을 경우
+                        // the case that find both
                         bottle !== 0 && spray !== 0 
                         ? <div>
                             측정된 스프레이

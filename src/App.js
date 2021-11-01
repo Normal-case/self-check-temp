@@ -8,7 +8,6 @@ import React, { useState } from "react";
 import { useLocation, Route } from "react-router-dom"
 import SlideRoutes from 'react-slide-routes'
 import firstPage from './page/firstPage.jsx'
-import Admin from './page/admin.jsx'
 
 import page2 from "./page/page2.jsx"
 import page3 from "./page/page3.jsx"
@@ -17,8 +16,6 @@ import page5 from "./page/page5.jsx"
 import page6 from "./page/page6.jsx"
 import page7 from "./page/page7.jsx"
 import page8 from "./page/page8.jsx"
-
-import testPage from "./page/testPage.jsx";
 
 function App() {
   const location = useLocation()
@@ -34,9 +31,7 @@ function App() {
         <Route path="/page6" component={page6} exact={true} />
         <Route path="/page7" component={page7} exact={true} />
         <Route path="/page8" component={page8} exact={true} />
-           <Route path="/testpage" component={testPage} exact={true} />
       </SlideRoutes>
-        <Route path="/admin" component={Admin} exact={true} />
     </>
   );
 }
