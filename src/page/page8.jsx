@@ -105,16 +105,17 @@ const Page8 = () => {
     var cType = block[0].split(':')[1];
     var realData = block[1].split(',')[1];
     var blob = b64ToFile(realData, cType);
-    const options = {
-      maxWidthOrHeight: 1280,
-    };
+    setResultImg(blob);
+    // const options = {
+    //   maxWidthOrHeight: 1280,
+    // };
 
-    try {
-      const compressedFile = await imageCompression(blob, options);
-      setResultImg(compressedFile);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const compressedFile = await imageCompression(blob, options);
+    //   setResultImg(compressedFile);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   // reload function
