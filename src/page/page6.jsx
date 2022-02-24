@@ -110,13 +110,13 @@ const Page6 = () => {
     //   maxWidthOrHeight: 1280,
     // };
 
-//     try {
-//       const compressedFile = await imageCompression(blob, options);
-//       setResultImg(compressedFile);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+    //     try {
+    //       const compressedFile = await imageCompression(blob, options);
+    //       setResultImg(compressedFile);
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+  };
 
   // reload function
   const retry = () => {
