@@ -51,7 +51,7 @@ const Page8 = () => {
   // base64 string to file image
   const b64ToFile = (realData, contentType = '', sliceSize = 512) => {
     // change legacy code atob(realData) => Buffer.from(realData, 'base64').toString('binary')
-    const byteCharacters = Buffer.from(realData).toString('binary');
+    const byteCharacters = Buffer.from(realData, 'base64').toString('binary');
     const byteArrays = [];
 
     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
