@@ -135,6 +135,7 @@ export default function TabNav() {
             <Button variant="outlined">부피측정 시작하기</Button>{' '}
           </Link>
         </TabPanel>
+        <img src='img/company-logo.png' class='company-logo' />
       </Box>
 
       {/* <span className='adminLink' onClick={callAdmin}>관리자 페이지</span> */}
